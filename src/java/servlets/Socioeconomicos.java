@@ -46,38 +46,39 @@ public class Socioeconomicos extends HttpServlet {
     List<BaseDatos> zona = bd.llenaZonaProcedencia();
 
     Catalogos catalogo = new Catalogos();
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-         String usuario = "desarrollo";
+        String usuario = "desarrollo";
         String pass = "d3s4rr0ll0";
-
+       
+        Bdatos_aspirante b = new Bdatos_aspirante();
         String correo = request.getParameter("correo");
         String curp = request.getParameter("curp");
-
+        String nombre = request.getParameter("nombre");
+        System.out.println("Nombre:"+nombre);
         Bdatos_aspirante aspirante = new Bdatos_aspirante();
         aspirante.setEmail(correo);
         aspirante.setCurp(curp);
         HttpSession session = request.getSession(true);
         session.setAttribute("aspirante", aspirante);
-        int pk = 0;
+//        int pk = 0;
         System.out.println(usuario + "/" + pass);
         Procedimientos p = new Procedimientos();
         PrintWriter out = response.getWriter();
 
 //validar que  curp no existe  para  dejar pasar  
-        int existeCurp = p.GetValidaCurp(usuario, pass, curp);
-        System.out.println("Retorno de procedimiento "+existeCurp);
+        int existeCurp = p.GetValidaCurp(curp);
+        System.out.println("Retorno de procedimiento " + existeCurp);
         switch (existeCurp) {
             case 0:
                 //no se ha registrado
                 try {
-                    estado = p.getCatalogos(usuario, pass, 2, 0);
+                    estado = p.getCatalogos( 2, 0);
                     estado = catalogo.AgregaS(estado);
-                    NivelEstudios = p.getCatalogos(usuario, pass, 4, 0);
+                    NivelEstudios = p.getCatalogos( 4, 0);
                     NivelEstudios = catalogo.AgregaS(NivelEstudios);
-                    Ocupaciones = p.getCatalogos(usuario, pass, 6, 0);
+                    Ocupaciones = p.getCatalogos(6, 0);
                     Ocupaciones = catalogo.AgregaS(Ocupaciones);
-                    Dependencia = p.getCatalogos(usuario, pass, 5, 0);
+                    Dependencia = p.getCatalogos( 5, 0);
                     Dependencia = catalogo.AgregaS(Dependencia);
 //            c.getConnection().close();
                 } catch (SQLException ex) {
@@ -94,7 +95,7 @@ public class Socioeconomicos extends HttpServlet {
                 session.setAttribute("cuartos", cuartos);
                 session.setAttribute("casa", casa);
                 session.setAttribute("zona", zona);
-                out.println(existeCurp);
+                out.println(0);
                 break;
             case 1:
                 //ya esta registrado
@@ -106,6 +107,7 @@ public class Socioeconomicos extends HttpServlet {
                 break;
 
         }
+
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

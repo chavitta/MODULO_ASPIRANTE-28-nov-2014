@@ -48,7 +48,7 @@ public class Servlet_ClaveCCT extends HttpServlet {
         int pk =Integer.parseInt(opc);
         try {
 
-            ClaveCCT = p.getCatalogos("desarrollo", "d3s4rr0ll0", 7, pk);
+            ClaveCCT = p.getCatalogos(7, pk);
 //            ClaveCCT = p.getCatalogos("fichas", "fichas", 7);
 
             System.out.println(ClaveCCT);

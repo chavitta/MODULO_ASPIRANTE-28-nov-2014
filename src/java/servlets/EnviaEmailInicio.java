@@ -34,7 +34,7 @@ public class EnviaEmailInicio extends HttpServlet {
         String CorreoEnc = e.encryptURL(correo);
         String UrlEnc = e.encryptURL(Url);
         String liga = Url + "?correo=" + CorreoEnc;
-        int existe = p.GetValidaCorreo("desarrollo", "d3s4rr0ll0", correo, UrlEnc);
+        int existe = p.GetValidaCorreo(correo, UrlEnc);
 
         switch (existe) {
             case 0:

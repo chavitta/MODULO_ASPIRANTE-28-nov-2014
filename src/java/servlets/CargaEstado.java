@@ -55,7 +55,7 @@ public class CargaEstado extends HttpServlet {
             try {
                 System.out.println("Entroa sevlet estado");
                 response.setContentType("text/html;charset=UTF-8");
-                municipio = p.getCatalogos(usuario, pass, 3, foranea);
+                municipio = p.getCatalogos( 3, foranea);
                 municipio = cat.AgregaS(municipio);
                 String json = null;
                 json = new Gson().toJson(municipio);
@@ -73,7 +73,7 @@ public class CargaEstado extends HttpServlet {
         if ("Loc".equals(opc)) {
             try {
             response.setContentType("text/html;charset=UTF-8");
-           Localidad = p.getCatalogos(usuario, pass, 3, foranea);
+           Localidad = p.getCatalogos( 3, foranea);
             Localidad = cat.AgregaS(Localidad);
             String json = null;
             json = new Gson().toJson(Localidad);

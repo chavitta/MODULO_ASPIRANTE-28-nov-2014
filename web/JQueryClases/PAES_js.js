@@ -4,11 +4,6 @@
  * and open the template in the editor.
  */
 
-function Pais() {
-
-
-
-}
 
 //****************
 $('#crp').submit(function(event) {
@@ -227,6 +222,11 @@ $(document).ready(function() {
         if (nonulos_socioeconomicos() === false || nonulos_socioeconomicos() === '') {
 //            alert('Complete sus  datos');
         } else {
+            $.get('/MODULO_ASPIRANTE/Socioeconomicos',
+                    {correo: correo, curp: curp},
+            function(retorno) {
+
+            });
             $('#fondofinalizado').show();
             $('#finalizado').show();
         }
@@ -251,14 +251,16 @@ $(document).ready(function() {
         $('#divmarco').hide();
         $('#div_fondomarco').hide();
     });
-    
+
     $('#confirmar').on('click', function() {
         var curp = $('#inputcurp').val();
         var correo = $('#caja_texto_email').val();
         $.get('/MODULO_ASPIRANTE/Socioeconomicos',
                 {correo: correo, curp: curp},
         function(retorno) {
+           
             if (retorno === 0) {
+                alert(retorno);
                 $('#divmarco').hide();
                 $('#div_fondomarco').hide();
                 $("#contenido").load("/MODULO_ASPIRANTE/vistas/Aspirante/Datos_Socioeconomicos.jsp");
@@ -817,6 +819,9 @@ function  ObtenerValor(id) {
 
 }
 
+function  InsertaPersonales(DatPersonales) {
+
+}
 function personales() {
     var paterno = ObtenerValor('#inputpaterno');
     var materno = ObtenerValor('#inputmaterno');
@@ -843,6 +848,11 @@ function personales() {
                 && estado !== false &&
                 capacidad !== false &&
                 sangre !== false && fecha !== false) {
+            $.get('MODULO_ASPIRANTE/RecibeDatosPersonales',
+                    {curp: curp, paterno: paterno, materno: materno, nombre: nombre},
+            function(retorno) {
+            }
+            );
             return  true;
         }
         else {

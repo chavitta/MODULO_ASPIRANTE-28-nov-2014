@@ -7,6 +7,7 @@ package ConexionBD;
 
 import beans.BaseDatos;
 import java.sql.CallableStatement;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -22,13 +23,16 @@ import oracle.jdbc.driver.OracleTypes;
  */
 public class Procedimientos {
 
+    String user = "desarrollo";
+    String pass = "d3s4rr0ll0";
     BaseDatos bd;
+    CallableStatement cs = null;
 
-    public List<BaseDatos> getCatalogos(String user, String pass, int opc, int pk) throws SQLException, ClassNotFoundException {
+    public List<BaseDatos> getCatalogos(int opc, int pk) throws SQLException, ClassNotFoundException {
         String result = "";
         int msgCodeError = -1;
         String msgDescError = "";
-        CallableStatement cs = null;
+
         List<BaseDatos> Estados;
         Estados = new ArrayList<>();
 
@@ -62,16 +66,17 @@ public class Procedimientos {
         }
         return Estados;
     }
-//DESARROLLO.PQ_CHECK_ASPIRANTE_1 recibe   curp
+//DESARROLLO.PQ_CHECK_ASPIRANTE_1 recibe   curp ****LLamando  funciones*** 
     //retorna  
-    // number
-    public int GetValidaCurp(String user, String pass, String curp) {
+    // numbern 
+
+    public int GetValidaCurp(String curp) {
         int retorna = 0;
         try {
             String result = "";
             int msgCodeError = -1;
             String msgDescError = "";
-            CallableStatement cs = null;
+
             List<BaseDatos> Estados;
             Estados = new ArrayList<>();
 
@@ -81,7 +86,8 @@ public class Procedimientos {
             cs.registerOutParameter(1, OracleTypes.NUMBER);
             cs.execute();
             retorna = cs.getInt(1);
-           
+            cs.close();
+
         } catch (SQLException ex) {
             Logger.getLogger(Procedimientos.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -95,14 +101,14 @@ public class Procedimientos {
 //    0 No tenemos registro de ese correo 
 //    1 Ya existe registro con ese correo
 //    2 Ocurrio un error al generar la liga
-    public int GetValidaCorreo(String user, String pass, String correo, String liga) {
+    public int GetValidaCorreo(String correo, String liga) {
         int existe = 0;
         String existeDes;
         try {
             String result = "";
             int msgCodeError = -1;
             String msgDescError = "";
-            CallableStatement cs = null;
+
             List<BaseDatos> Estados;
             Estados = new ArrayList<>();
             Conexion con = new Conexion(user, pass);
@@ -115,6 +121,7 @@ public class Procedimientos {
             cs.execute();
             existe = cs.getInt(3);
             existeDes = cs.getString(5);
+            cs.close();
         } catch (SQLException ex) {
             Logger.getLogger(Procedimientos.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -122,14 +129,53 @@ public class Procedimientos {
         }
         return existe;
     }
+
+    public int InsertaPersonales(String curp, String nombre, String Apaterno, String Amaterno, Date FecNac,
+            String Pais, String Estado, String CdNac, String sexo, String EdoCivil, String sangre, String capacidad,
+            String Curso, String correo) {
+        int IdAspirante = 0;
+        try {
+            String result = "";
+            int msgCodeError = -1;
+            String msgDescError = "";
+            Conexion con = new Conexion(user, pass);
+            cs = con.getConnection().prepareCall("{call PQ_INSERT_ASPIRANTE_1.SET_REGISTRO_PERSONALDATA_SP(?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            cs.setString(1, curp);
+            cs.setString(2, nombre);
+            cs.setString(3, Apaterno);
+            cs.setString(4, Amaterno);
+            cs.setDate(5, FecNac);
+            cs.setString(6, Pais);
+            cs.setString(7, Estado);
+            cs.setString(8, CdNac);
+            cs.setString(9, sexo);
+            cs.setString(10, EdoCivil);
+            cs.setString(11, sangre);
+            cs.setString(12, capacidad);
+            cs.setString(13, Curso);
+            cs.setString(14, correo);
+            cs.registerOutParameter(15, OracleTypes.NUMBER);
+            cs.registerOutParameter(16, OracleTypes.NUMBER);
+            cs.registerOutParameter(17, OracleTypes.VARCHAR);
+            cs.execute();
+            IdAspirante = cs.getInt(15);
+            cs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Procedimientos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Procedimientos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return IdAspirante;
+    }
+
     public static void main(String[] args) {
         String pass = "d3s4rr0ll0";
         String usuario = "desarrollo";
         List<BaseDatos> pais;
-      int pk = 0;
+        int pk = 0;
         Procedimientos p = new Procedimientos();
         try {
-            pais = p.getCatalogos(usuario, pass, 1, pk);
+            pais = p.getCatalogos(1, pk);
             System.out.println("");
         } catch (SQLException ex) {
             Logger.getLogger(Procedimientos.class.getName()).log(Level.SEVERE, null, ex);

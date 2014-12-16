@@ -24,6 +24,10 @@
         <servlet-name>CargaEstado</servlet-name>
         <servlet-class>servlets.CargaEstado</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RecibeDatosPersonales</servlet-name>
+        <servlet-class>servlets.RecibeDatosPersonales</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletActualizarListas</servlet-name>
         <url-pattern>/ServletActualizarListas</url-pattern>
@@ -75,6 +79,10 @@
     <servlet-mapping>
         <servlet-name>CargaEstado</servlet-name>
         <url-pattern>/CargaEstado</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RecibeDatosPersonales</servlet-name>
+        <url-pattern>/RecibeDatosPersonales</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
