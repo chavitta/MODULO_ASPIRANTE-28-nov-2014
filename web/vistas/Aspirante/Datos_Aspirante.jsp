@@ -92,9 +92,9 @@
                             <section id="personales_izquierdo">
                                 <fieldset id="labels_personales">
                                     <p><label id="etiqueta_curp_izq" class="labels" >CURP:</label>
-                                        <input type="text" id="inputcurp" name="curp" class="tamano_cajas_texto" maxlength="18" onkeyup="this.value = this.value.toUpperCase()"
+                                        <input type="text" id="inputcurp" name="curp" class="tamano_cajas_texto"  maxlength="18" onkeyup="this.value = this.value.toUpperCase()"
                                                required>  
-                                        <label id="etiqueta_apaterno_izq" class="labels" >Apellido Paterno:</label>
+                                        <label id="etiqueta_apaterno_izq" class="labels">Apellido Paterno:</label>
                                         <input type="text" id="inputpaterno" name="Apaterno" value="${paterno}" class="tamano_cajas_texto" maxlength="30" >
                                         <label id="etiqueta_fecha_izq" class="labels" name="Amaterno"> Fecha de Nacimiento:</label>
 
