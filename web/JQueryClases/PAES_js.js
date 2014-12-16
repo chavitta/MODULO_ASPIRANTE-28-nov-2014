@@ -65,11 +65,7 @@ function ConfirmaDatos() {
     $('#confirmacurp').text(curp);
     $('#confirmacorreo').text(correo);
     $('#confirmacarrera ').text(carrera);
-    $.get('/MODULO_ASPIRANTE/GuardaCorreo',
-            {correo: correo},
-    function(retorno) {
-    }
-    );
+
 }
 
 function Filtros(id, data) {
@@ -92,7 +88,6 @@ $(document).ready(function() {
 
         var pk = $('#selectedonacimiento option:selected').val();
         var opcion = "Mun";
-
         $.getJSON("/MODULO_ASPIRANTE/CargaEstado",
                 {pk: pk, opcion: opcion},
         function(data) {
@@ -244,28 +239,39 @@ $(document).ready(function() {
     $('#continuar_datos').click(function() {
 
 //Validaciones  de  no  nulos  listas  no  borrar estas  lineas comentadas :D
-//        if (nonulos() === false || nonulos() === '' || nonulos === 0) {
-////            alert("Aun no han sido completados  todos  sus datos");
-//        } else {
-        ConfirmaDatos();
-        $('#div_fondomarco').show();
-        $('#divmarco').show();
-//        }
+        if (nonulos() === false || nonulos() === '' || nonulos === 0) {
+//            alert("Aun no han sido completados  todos  sus datos");
+        } else {
+            ConfirmaDatos();
+            $('#div_fondomarco').show();
+            $('#divmarco').show();
+        }
     });
     $('#cancelar').on('click', function() {
         $('#divmarco').hide();
         $('#div_fondomarco').hide();
     });
+    
     $('#confirmar').on('click', function() {
-        $('#divmarco').hide();
-        $('#div_fondomarco').hide();
+        var curp = $('#inputcurp').val();
+        var correo = $('#caja_texto_email').val();
         $.get('/MODULO_ASPIRANTE/Socioeconomicos',
-                {},
-                function(retorno) {
-                    $("#contenido").load("/MODULO_ASPIRANTE/vistas/Aspirante/Datos_Socioeconomicos.jsp");
-                }
-        );
-//        $("#contenido").load("vistas/Aspirante/CargarFoto.jsp");
+                {correo: correo, curp: curp},
+        function(retorno) {
+            if (retorno === 0) {
+                $('#divmarco').hide();
+                $('#div_fondomarco').hide();
+                $("#contenido").load("/MODULO_ASPIRANTE/vistas/Aspirante/Datos_Socioeconomicos.jsp");
+            }
+            if (retorno === 1) {
+                alert("La curp ya ha sido registrada en esta convocatoria.");
+            }
+            if (retorno === -1) {
+                alert("Ha ocurrido  un error inesperado, vuelva a intentarlo");
+                $('#divmarco').hide();
+                $('#div_fondomarco').hide();
+            }
+        });
     });
     //carga correcta
     $('#cerrar').on('click', function() {
@@ -324,29 +330,7 @@ $(document).ready(function() {
         $('#fondofinalizado').hide();
         $('#finalizado').hide();
     });
-    //solo numeros
-//    $("#tel1 , #lada1, #tel2, #lada2, #cp, #tel_fijo, #tel_cel, #tel_trabajo, #numcelular ").keydown(function(event) {
-//        if (event.shiftKey)
-//        {
-//            event.preventDefault();
-//        }
-//
-//        if (event.keyCode === 46 || event.keyCode === 8) {
-//        }
-//        else {
-//            if (event.keyCode < 95) {
-//                if (event.keyCode < 48 || event.keyCode > 57) {
-//                    event.preventDefault();
-//                }
-//            }
-//            else {
-//                if (event.keyCode < 96 || event.keyCode > 105) {
-//                    event.preventDefault();
-//                }
-//            }
-//        }
-//    });
-//otra escuela
+
     $('#combo_tipoescuela').change(function() {
         var tipo_otra = ObtenerValor('#combo_tipoescuela');
         if (tipo_otra === "20") {
@@ -416,10 +400,6 @@ $(document).ready(function() {
             $(this).next().slideDown();
         }
     });
-//    $(".tooltip-examples a").tooltip({
-//        placement: 'top'
-//    });
-    //load  de sub-modulo  INICIO
 
     $('#inicio').click(function() {
         $("#Contenedor_Bienvenido").load("vistas/Inicio/inicio.jsp", function(responseTxt, statusTxt, xhr) {
@@ -677,7 +657,7 @@ function validar_numeros(id) {
 //validar solo letras 
 function validar_letras(id) {
     $(id).change(function() {
-        var letras = $("#"+id).val();
+        var letras = $("#" + id).val();
         patron_letra = /^[A-Za-z-ñäöüßÄÖÜáéíóúÁÉÍÓÚ ]+$/;
         if (!patron_letra.test(letras)) {
             $(id).css("border", "1px solid red");

@@ -62,7 +62,66 @@ public class Procedimientos {
         }
         return Estados;
     }
+//DESARROLLO.PQ_CHECK_ASPIRANTE_1 recibe   curp
+    //retorna  
+    // number
+    public int GetValidaCurp(String user, String pass, String curp) {
+        int retorna = 0;
+        try {
+            String result = "";
+            int msgCodeError = -1;
+            String msgDescError = "";
+            CallableStatement cs = null;
+            List<BaseDatos> Estados;
+            Estados = new ArrayList<>();
 
+            Conexion con = new Conexion(user, pass);
+            cs = con.getConnection().prepareCall("{?=call DESARROLLO.PQ_CHECK_ASPIRANTE_1.CHECK_EXIST_REG_ASP_FN(?)}");
+            cs.setString(2, curp);
+            cs.registerOutParameter(1, OracleTypes.NUMBER);
+            cs.execute();
+            retorna = cs.getInt(1);
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(Procedimientos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Procedimientos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retorna;
+    }
+
+    //CHECK_CORREO_CLIGA_SP  revibe  liga y  correo  encriptados
+    //retorna int
+//    0 No tenemos registro de ese correo 
+//    1 Ya existe registro con ese correo
+//    2 Ocurrio un error al generar la liga
+    public int GetValidaCorreo(String user, String pass, String correo, String liga) {
+        int existe = 0;
+        String existeDes;
+        try {
+            String result = "";
+            int msgCodeError = -1;
+            String msgDescError = "";
+            CallableStatement cs = null;
+            List<BaseDatos> Estados;
+            Estados = new ArrayList<>();
+            Conexion con = new Conexion(user, pass);
+            cs = con.getConnection().prepareCall("{call DESARROLLO.PQ_CHECK_ASPIRANTE_1.CHECK_CORREO_CLIGA_SP(?,?,?,?,?)}");
+            cs.setString(1, correo);
+            cs.setString(2, liga);
+            cs.registerOutParameter(3, OracleTypes.NUMBER);
+            cs.registerOutParameter(4, OracleTypes.NUMBER);
+            cs.registerOutParameter(5, OracleTypes.VARCHAR);
+            cs.execute();
+            existe = cs.getInt(3);
+            existeDes = cs.getString(5);
+        } catch (SQLException ex) {
+            Logger.getLogger(Procedimientos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Procedimientos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return existe;
+    }
     public static void main(String[] args) {
         String pass = "d3s4rr0ll0";
         String usuario = "desarrollo";

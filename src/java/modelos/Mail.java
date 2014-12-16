@@ -22,9 +22,9 @@ import javax.mail.internet.MimeMessage;
 public class Mail {
 //parametros  destinatario, y quien envia, objeto con  cuerpo 
 
-    public String sendMail(BMail beanMail, String from, String to, String pass, boolean link) {
+    public boolean sendMail(BMail beanMail, String from, String to, String pass, boolean link) {
 //        BMail beanMail = new BMail();
-String  retorno = null;
+boolean  retorno = false;
 //        String from = "aspirantes@ittoluca.edu.mx";
 //        String pass = "11280672";
 //        String[] to = {
@@ -76,15 +76,15 @@ String  retorno = null;
             try {
                 transport.sendMessage(message, message.getAllRecipients());
                 transport.close();
-                retorno="Se ha enviado a tu correo  una  liga  para continuar con el registro. Si no logras visualizar el correo en tu Bandeja de entrada debes verificar en la bandeja de Correo no deseado";
                 System.out.println("Se envió mensaje");
+                retorno=true;
             } catch (MessagingException ex) {
             }
         } catch (MessagingException me) {
             me.printStackTrace();
             System.out.println(me);
-            retorno="No  he  ha  podido  enviar el correo vuelva a  intentar por favor";
             System.out.println("No se  envió correo");
+            retorno=false;
         }
         return retorno;
     }
