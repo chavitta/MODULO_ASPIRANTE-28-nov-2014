@@ -259,20 +259,20 @@ $(document).ready(function() {
                 {correo: correo, curp: curp},
         function(retorno) {
            
-            if (retorno === 0) {
-                alert(retorno);
+//            if (retorno === 0) {
+//                alert(retorno);
                 $('#divmarco').hide();
                 $('#div_fondomarco').hide();
                 $("#contenido").load("/MODULO_ASPIRANTE/vistas/Aspirante/Datos_Socioeconomicos.jsp");
-            }
-            if (retorno === 1) {
-                alert("La curp ya ha sido registrada en esta convocatoria.");
-            }
-            if (retorno === -1) {
-                alert("Ha ocurrido  un error inesperado, vuelva a intentarlo");
-                $('#divmarco').hide();
-                $('#div_fondomarco').hide();
-            }
+//            }
+//            if (retorno === 1) {
+//                alert("La curp ya ha sido registrada en esta convocatoria.");
+//            }
+//            if (retorno === -1) {
+//                alert("Ha ocurrido  un error inesperado, vuelva a intentarlo");
+//                $('#divmarco').hide();
+//                $('#div_fondomarco').hide();
+//            }
         });
     });
     //carga correcta
@@ -848,9 +848,10 @@ function personales() {
                 && estado !== false &&
                 capacidad !== false &&
                 sangre !== false && fecha !== false) {
-            $.get('MODULO_ASPIRANTE/RecibeDatosPersonales',
+            $.get('RecibeDatosPersonales',
                     {curp: curp, paterno: paterno, materno: materno, nombre: nombre},
             function(retorno) {
+                alert(retorno);
             }
             );
             return  true;

@@ -187,7 +187,7 @@
                                 <fieldset id="personales_derecho">
                                     <br>                      
                                     <p><label name="etiqueta_nombre">Nombre(s):</label>
-                                        <input id="inputnombre" value="${Bdatos_aspirante.name}" type="text" required class="tamano_caja_nombre" maxlength="30">
+                                        <input id="inputnombre" value="${name}" type="text" required class="tamano_caja_nombre" maxlength="30">
                                         <br><br><br><br><br>
                                         <label id="sangre_aviso">Tu tipo de sangre es de vital importancia en caso de accidentes</label></p>                       
                                 </fieldset>

@@ -53,8 +53,9 @@ public class Socioeconomicos extends HttpServlet {
         Bdatos_aspirante b = new Bdatos_aspirante();
         String correo = request.getParameter("correo");
         String curp = request.getParameter("curp");
-        String nombre = request.getParameter("nombre");
-        System.out.println("Nombre:"+nombre);
+        Object DatosAsp=request.getAttribute("DatosAsp");
+//        String nombre = request.getParameter("DatosAsp");
+        System.out.println("Objeto:"+DatosAsp);
         Bdatos_aspirante aspirante = new Bdatos_aspirante();
         aspirante.setEmail(correo);
         aspirante.setCurp(curp);
@@ -80,7 +81,6 @@ public class Socioeconomicos extends HttpServlet {
                     Ocupaciones = catalogo.AgregaS(Ocupaciones);
                     Dependencia = p.getCatalogos( 5, 0);
                     Dependencia = catalogo.AgregaS(Dependencia);
-//            c.getConnection().close();
                 } catch (SQLException ex) {
                     Logger.getLogger(Catalogos.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ClassNotFoundException ex) {

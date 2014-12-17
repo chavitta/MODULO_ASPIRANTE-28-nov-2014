@@ -12,13 +12,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author ElyyzZ BaRruEtA
  */
 public class RecibeDatosPersonales extends HttpServlet {
-    
+
     public Bdatos_aspirante DatosAsp;
 
     /**
@@ -33,16 +34,20 @@ public class RecibeDatosPersonales extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession(true);
         PrintWriter out = response.getWriter();
         String curp = request.getParameter("curp");
         String paterno = request.getParameter("paterno");
         String materno = request.getParameter("materno");
         String nombre = request.getParameter("nombre");
+        System.out.println(curp);
         DatosAsp.setCurp(curp);
         DatosAsp.setPaterno(paterno);
         DatosAsp.setMaterno(materno);
         DatosAsp.setName(nombre);
-        
+
+        session.setAttribute("DatosAsp",DatosAsp);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

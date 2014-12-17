@@ -45,12 +45,10 @@ public class Servlet_ClaveCCT extends HttpServlet {
         Procedimientos p = new Procedimientos();
         String opc = request.getParameter("municipio");
 
-        int pk =Integer.parseInt(opc);
+        int pk = Integer.parseInt(opc);
         try {
 
             ClaveCCT = p.getCatalogos(7, pk);
-//            ClaveCCT = p.getCatalogos("fichas", "fichas", 7);
-
             System.out.println(ClaveCCT);
         } catch (SQLException ex) {
             Logger.getLogger(Catalogos.class.getName()).log(Level.SEVERE, null, ex);
@@ -67,10 +65,7 @@ public class Servlet_ClaveCCT extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);
 
-//        HttpSession session = request.getSession(true);
-//        session.setAttribute("ClaveCCT", ClaveCCT);
-//        out.print(ClaveCCT);
-    }
+  }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
