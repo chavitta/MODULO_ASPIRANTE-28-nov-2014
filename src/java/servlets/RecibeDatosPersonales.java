@@ -20,8 +20,7 @@ import javax.servlet.http.HttpSession;
  */
 public class RecibeDatosPersonales extends HttpServlet {
 
-    public Bdatos_aspirante DatosAsp;
-
+//    public Bdatos_aspirante DatosAsp;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,17 +35,11 @@ public class RecibeDatosPersonales extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(true);
         PrintWriter out = response.getWriter();
-        String curp = request.getParameter("curp");
-        String paterno = request.getParameter("paterno");
-        String materno = request.getParameter("materno");
-        String nombre = request.getParameter("nombre");
-        System.out.println(curp);
-        DatosAsp.setCurp(curp);
-        DatosAsp.setPaterno(paterno);
-        DatosAsp.setMaterno(materno);
-        DatosAsp.setName(nombre);
 
-        session.setAttribute("DatosAsp",DatosAsp);
+        String curp = request.getParameter("TodNulos");
+        System.out.println(curp);
+        String DatosAsp = curp;
+        session.setAttribute("DatosAsp", DatosAsp);
 
     }
 

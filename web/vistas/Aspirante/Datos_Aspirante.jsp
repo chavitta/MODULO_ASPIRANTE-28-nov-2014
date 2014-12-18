@@ -281,7 +281,14 @@
                                         <option value="Privada">Privada</option>
                                         <option value="Otra">Otra</option>                                      
                                     </select>
-                                    <div  id="opcion_otraescuela_aparece" style="display: none"> 
+                                  
+                                    <label name="etiqueta_escuela" class="labels">Escuela:</label>
+                                    <select  name="input_escuela"  id="escuelaprocedencia" class="Selects">
+                                        <c:forEach items="${Escuela}" var="Escuela">                                     
+                                            <option value="${Escuela.getClave()}"><c:out value="${Escuela.getNombre()}"/></option>                                                                           
+                                        </c:forEach>
+                                    </select>
+                                      <div  id="opcion_otraescuela_aparece" style="display: none"> 
                                         <label name="otra_escuela" class="labels">Especifique que Tipo:</label>
                                         <select id="otraescuela" name="input_otraescuela" class="Selects" ><!-- -->
                                             <option value="0">--Seleccione--</option>
@@ -289,12 +296,6 @@
                                             <option value="Ac">Acuerdo 286</option>
                                         </select>
                                     </div>
-                                    <label name="etiqueta_escuela" class="labels">Escuela:</label>
-                                    <select  name="input_escuela"  id="escuelaprocedencia" class="Selects">
-                                        <c:forEach items="${Escuela}" var="Escuela">                                     
-                                            <option value="${Escuela.getClave()}"><c:out value="${Escuela.getNombre()}"/></option>                                                                           
-                                        </c:forEach>
-                                    </select>
                                 </fieldset>                
                             </section>
                             <section id="centro_escuela">                    

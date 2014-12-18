@@ -53,9 +53,8 @@ public class CargaEstado extends HttpServlet {
         Procedimientos p = new Procedimientos();
         if ("Mun".equals(opc)) {
             try {
-                System.out.println("Entroa sevlet estado");
                 response.setContentType("text/html;charset=UTF-8");
-                municipio = p.getCatalogos( 3, foranea);
+                municipio = p.getCatalogos(3, foranea);
                 municipio = cat.AgregaS(municipio);
                 String json = null;
                 json = new Gson().toJson(municipio);
@@ -72,36 +71,35 @@ public class CargaEstado extends HttpServlet {
         }
         if ("Loc".equals(opc)) {
             try {
-            response.setContentType("text/html;charset=UTF-8");
-           Localidad = p.getCatalogos( 3, foranea);
-            Localidad = cat.AgregaS(Localidad);
-            String json = null;
-            json = new Gson().toJson(Localidad);
-            System.out.println("json" + json);
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            response.getWriter().write(json);
-        
-        }catch (SQLException ex) {
+                response.setContentType("text/html;charset=UTF-8");
+                Localidad = p.getCatalogos(9, foranea);
+                Localidad = cat.AgregaS(Localidad);
+                String json = null;
+                json = new Gson().toJson(Localidad);
+                System.out.println("json" + json);
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().write(json);
+
+            } catch (SQLException ex) {
                 Logger.getLogger(CargaEstado.class.getName()).log(Level.SEVERE, null, ex);
-            }catch (ClassNotFoundException ex) {
+            } catch (ClassNotFoundException ex) {
                 Logger.getLogger(CargaEstado.class.getName()).log(Level.SEVERE, null, ex);
-            }}
+            }
+        }
     }
 
-
-
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-/**
- * Handles the HTTP <code>GET</code> method.
- *
- * @param request servlet request
- * @param response servlet response
- * @throws ServletException if a servlet-specific error occurs
- * @throws IOException if an I/O error occurs
- */
-@Override
-        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -115,7 +113,7 @@ public class CargaEstado extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-        protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -126,7 +124,7 @@ public class CargaEstado extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-        public String getServletInfo() {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

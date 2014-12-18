@@ -222,11 +222,7 @@ $(document).ready(function() {
         if (nonulos_socioeconomicos() === false || nonulos_socioeconomicos() === '') {
 //            alert('Complete sus  datos');
         } else {
-            $.get('/MODULO_ASPIRANTE/Socioeconomicos',
-                    {correo: correo, curp: curp},
-            function(retorno) {
 
-            });
             $('#fondofinalizado').show();
             $('#finalizado').show();
         }
@@ -237,11 +233,19 @@ $(document).ready(function() {
 //    });
 //     cargar confirmar Datos
     $('#continuar_datos').click(function() {
-
+var TodNulos=nonulos();
 //Validaciones  de  no  nulos  listas  no  borrar estas  lineas comentadas :D
-        if (nonulos() === false || nonulos() === '' || nonulos === 0) {
+        if (TodNulos=== false || TodNulos === '' || TodNulos === 0) {
 //            alert("Aun no han sido completados  todos  sus datos");
         } else {
+            //enviar  en el servlet
+              alert("llamando...");
+            $.get('/MODULO_ASPIRANTE/RecibeDatosPersonales',
+                    {TodNulos:TodNulos},
+            function(retorno) {
+                
+            }
+            );
             ConfirmaDatos();
             $('#div_fondomarco').show();
             $('#divmarco').show();
@@ -255,15 +259,16 @@ $(document).ready(function() {
     $('#confirmar').on('click', function() {
         var curp = $('#inputcurp').val();
         var correo = $('#caja_texto_email').val();
+//        var datper=$('#ObjetoPersonales').val();
         $.get('/MODULO_ASPIRANTE/Socioeconomicos',
                 {correo: correo, curp: curp},
         function(retorno) {
-           
+
 //            if (retorno === 0) {
 //                alert(retorno);
-                $('#divmarco').hide();
-                $('#div_fondomarco').hide();
-                $("#contenido").load("/MODULO_ASPIRANTE/vistas/Aspirante/Datos_Socioeconomicos.jsp");
+            $('#divmarco').hide();
+            $('#div_fondomarco').hide();
+            $("#contenido").load("/MODULO_ASPIRANTE/vistas/Aspirante/Datos_Socioeconomicos.jsp");
 //            }
 //            if (retorno === 1) {
 //                alert("La curp ya ha sido registrada en esta convocatoria.");
@@ -333,8 +338,8 @@ $(document).ready(function() {
         $('#finalizado').hide();
     });
 
-    $('#combo_tipoescuela').change(function() {
-        var tipo_otra = ObtenerValor('#combo_tipoescuela');
+    $('#escuelaprocedencia').change(function() {
+        var tipo_otra = ObtenerValor('#escuelaprocedencia');
         if (tipo_otra === "20") {
             $('#opcion_otraescuela_aparece').show();
         } else {
@@ -819,10 +824,9 @@ function  ObtenerValor(id) {
 
 }
 
-function  InsertaPersonales(DatPersonales) {
 
-}
 function personales() {
+    var personalesDat;
     var paterno = ObtenerValor('#inputpaterno');
     var materno = ObtenerValor('#inputmaterno');
     var nombre = ObtenerValor('#inputnombre');
@@ -848,13 +852,10 @@ function personales() {
                 && estado !== false &&
                 capacidad !== false &&
                 sangre !== false && fecha !== false) {
-            $.get('RecibeDatosPersonales',
-                    {curp: curp, paterno: paterno, materno: materno, nombre: nombre},
-            function(retorno) {
-                alert(retorno);
-            }
-            );
-            return  true;
+            personalesDat = curp + "||" + paterno + "||" + materno + "||" + nombre + "||" + sexo + "||" + correo +
+                    "||" + edocivil + "||" + pais + "||" + estado + "||" + municipio + "||" + ciudad + "||" + capacidad + "||" + sangre + "||" + fecha;
+
+            return  personalesDat;
         }
         else {
             alert("complete sus datos personales ya que son importantes para realizar su registro");
@@ -869,7 +870,10 @@ function personales() {
                 pais !== false &&
                 capacidad !== false &&
                 sangre !== false && fecha !== false) {
-            return  true;
+            personalesDat = curp + "||" + paterno + "||" + materno + "||" + nombre + "||" + sexo + "||" + correo +
+                    "||" + edocivil + "||" + pais + "||" + capacidad + "||" + sangre + "||" + fecha;
+
+            return  personalesDat;
         }
         else {
 
@@ -882,21 +886,22 @@ function personales() {
 
 
 function direccion() {
-
+var  datosDir;
     var estado = ObtenerValor('#input_estado');
     var municipio = ObtenerValor('#dirmunicipio');
     var numExt = ObtenerValor('#dirnumext');
-//    var numInt = ObtenerValor('#dirnumInt');
-    var dirciudad = ObtenerValor('#dirciudad');
+    var numInt = ObtenerValor('#dirnumInt');
+    var localidad = ObtenerValor('#dirciudad');
     var dcalle = ObtenerValor('#dircalle');
     var dcolonia = ObtenerValor('#dircolonia');
     var codigopostal = ObtenerValor('#cp');
-//    var celular = ObtenerValor('#numcelular');
+    var celular = ObtenerValor('#numcelular');
     var fijo = ObtenerValor('#tel2');
-    if (estado !== false && dirciudad !== false && dcalle !== false && dcolonia !== false &&
+    if (estado !== false && localidad !== false && dcalle !== false && dcolonia !== false &&
             numExt !== false && municipio !== false && codigopostal !== false
-            && fijo !== false) {
-        return true;
+            && fijo !== false && celular!==false) {
+        datosDir=estado+"||"+municipio+"||"+localidad+"||"+dcolonia+"||"+dcalle+"||"+numExt+"||"+numInt+"||"+codigopostal+"||"+celular+"||"+fijo;
+        return datosDir;
     } else {
         alert("Es necesario que complete su dirección");
         return false;
@@ -905,6 +910,7 @@ function direccion() {
 
 
 function escprocedencia() {
+    var  DatosEscProd;
     var estado = ObtenerValor('#inputestado');
     var municipio = ObtenerValor('#municipio');
     var tipoescuela = ObtenerValor('#combo_tipoescuela');
@@ -916,13 +922,15 @@ function escprocedencia() {
     var mesfin = ObtenerValor('#mes_fin');
     var aniofin = ObtenerValor('#anio_fin');
     var promedio = ObtenerValor('#inputpromedio');
-    if (tipoescuela === 'Otra') {
+    if (escuela === '20') {
         if (estado !== false && municipio !== false && tipoescuela !== false &&
                 otraescuela !== false &&
-                escuela !== false
+                escuela !== false 
                 && clavescuela !== false && mesinicio !== false && anioinicio !== false && mesfin !== false && aniofin !== false
                 && promedio !== false) {
-            return true;
+            DatosEscProd=estado+"||"+municipio+"||"+tipoescuela+"||"+otraescuela+"||"+escuela+
+                    "||"+clavescuela+"||"+mesinicio+"||"+anioinicio+"||"+mesfin+"||"+aniofin+"||"+promedio;
+            return DatosEscProd;
         } else {
             alert("Complete datos de escuela de procedencia");
             return false;
@@ -942,24 +950,32 @@ function escprocedencia() {
 
 
 function carreradeseada() {
+    var DatCarrera;
     var carrera1 = ObtenerValor('#carreraopcion1');
     var carrera2 = ObtenerValor('#carreraopcion2');
     var carrera3 = ObtenerValor('#carreraopcion3');
     var curso = ObtenerValor('#propedeuticoSelect');
     if (carrera1 !== false && carrera2 !== false && carrera3 !== false && curso !== false) {
-        return true;
+       
+       DatCarrera=carrera1+"||"+carrera2+"||"+carrera3;
+        return DatCarrera;
     } else {
         alert("Complete las opciones de carrera");
         return false;
     }
 }
 function nonulos() {
-
-    if (personales() !== false && direccion() !== false
-            && escprocedencia() !== false && carreradeseada() !== false
+var persoDatos=personales();
+var Datosdir=direccion();
+var Datosper=escprocedencia();
+var DatosCarr=carreradeseada();
+var DatosFor1;
+    if (persoDatos !== false && Datosdir !== false
+            && Datosper !== false && DatosCarr !== false
             ) {
         ConfirmaDatos();
-        return true;
+        DatosFor1=persoDatos+"||"+Datosdir+"||"+Datosper+"||"+DatosCarr;
+        return DatosFor1;
     } else {
         return false;
     }

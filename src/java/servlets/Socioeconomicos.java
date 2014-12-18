@@ -53,9 +53,9 @@ public class Socioeconomicos extends HttpServlet {
         Bdatos_aspirante b = new Bdatos_aspirante();
         String correo = request.getParameter("correo");
         String curp = request.getParameter("curp");
-        Object DatosAsp=request.getAttribute("DatosAsp");
+//        String DatosAsp=request.getParameter("datper");
 //        String nombre = request.getParameter("DatosAsp");
-        System.out.println("Objeto:"+DatosAsp);
+//        System.out.println("Objeto:"+DatosAsp);
         Bdatos_aspirante aspirante = new Bdatos_aspirante();
         aspirante.setEmail(correo);
         aspirante.setCurp(curp);
