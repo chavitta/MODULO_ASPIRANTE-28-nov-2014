@@ -1,29 +1,49 @@
-<%--<%@page contentType="text/html" pageEncoding="UTF-8"%>--%>
-
-<%--<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>--%>
-<%@ page import="net.tanesha.recaptcha.ReCaptcha" %>
-<%@ page import="net.tanesha.recaptcha.ReCaptchaFactory" %>
-
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <html>
     <head>
+
+        <script type="text/javascript">
+            $(".tooltip-examples a").tooltip({
+                placement: 'top'
+            });
+        </script>
+
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="JQueryClases/jquery-1.11.1.min.js" type="text/javascript"></script>
         <script src="JQueryClases/bootstrap.min.js" type="text/javascript"></script>
         <script src="JQueryClases/jquery.validate.min.js" type="text/javascript"></script>
         <script src="JQueryClases/PAES_js.js" type="text/javascript"></script>
         <script src="JQueryClases/shadowbox.js" type="text/javascript"></script>
+
+
         <link rel="stylesheet" href="Estilos/PAES_css.css" media="all" type="text/css">
         <link rel="stylesheet" href="Estilos/css/shadowbox.css" type="text/css">
         <link rel="stylesheet" href="Estilos/lookandfeel_tec.css" type="text/css">
+        
         <link rel="stylesheet" href="Estilos/css/bootstrap-theme.min.css.css" type="text/css">
         <link rel="stylesheet" href="Estilos/css/bootstrap.min.css.css" type="text/css">     
-
+        <link rel="stylesheet" href="Estilos/css/bootstrap-theme.min.css #2.css" type="text/css">     
+        <link rel="stylesheet" href="Estilos/css/bootstrap1.css" type="text/css">     
+<!--        <link rel="stylesheet" href="Estilos/css/bootstrap-theme.css" type="text/css">     
+        <link rel="stylesheet" href="Estilos/css/bootstrap-theme.min.css" type="text/css">     
+        <link rel="stylesheet" href="Estilos/css/bootstrap.css" type="text/css">     
+        <link rel="stylesheet" href="Estilos/css/bootstrap.min.css" type="text/css">     -->
         <title>--M&Oacute;DULO ASPIRANTE--</title>
+
+<!--
+         Latest compiled and minified CSS 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+         Optional theme 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+         Latest compiled and minified JavaScript 
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>-->
+
+
+
     </head>
-    
-    <!--Valida si la fecha de consulta esta dentro del periodo habilitado-->
     <body>         
         <a name="InicioPag"></a>
         <header>
@@ -45,9 +65,9 @@
                             </li>
                         </ul>
                         <label id="centrar_inf"><h4>Para realizar su solicitud de registro como aspirante, asegurate de contar con los siguientes datos y documentos.</h4></label>
-                        <ul id="sangria">
-                            <li>Clave CURP<a href="http://consultas.curp.gob.mx/CurpSP/"target="_blank"><div id="aqui">consultar aqu&iacute;</div></a></li>
-                            <li>Clave de la escuela de procedencia<a href="http://www.snie.sep.gob.mx/SNIESC/" target="_blank"><div id="aqui_escuela">consultar aqu&iacute;</div></a></li>
+                        <ul id="sangria">                            
+                            <li>Clave CURP<a href="http://consultas.curp.gob.mx/CurpSP/"target="_blank"><div id="aqui">consultar aquí</div></a></li>
+                            <li>Clave de la escuela de procedencia<a href="http://www.snie.sep.gob.mx/SNIESC/" target="_blank"><div id="aqui_escuela">consultar aquí</div></a></li>
                             <li><div id="link_toolt"><a data-toggle="tooltip" data-original-title="Federal, Estatal, Privada"  >Tipo de la escuela de procedencia</a></div></li>
                             <li>Tipo de sangre</li>
                             <li>Acta de nacimiento</li>
@@ -73,19 +93,8 @@
                             <h5><input id="comprobar" type="checkbox">He le&iacute;do esta informaci&oacute;n. <br></h5>
                         </label>
                         <br>
-                        <a href="#"> <label><input id="heleido" type="button" class="btn btn-info" value="Aceptar" style="display: none"></label></a>
-
+                        <a> <label><input id="heleido" type="button" class="btn btn-info" value="Aceptar" style="display: none"></label></a>
                     </div>
-<!--                    <div id="cargando">
-                        <div class="spinner-wave">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                        </div>
-
-                    </div>-->
                 </div>
             </div>
 
@@ -149,19 +158,27 @@
 
         <div id="content">
             <div id="overlay" class="overlay">
-                
+
             </div>
             <div id="popup" class="popup">
                 <div>
                     <center><h2>Aviso al usuario</h2></center>
                     <div id="msgPeriodo">
                         Por el momento la p&aacute;gina del preregistro de aspirantes se encuentra indispuesta debido a que no estamos en un periodo h&aacute;bil para expedir prefichas.
-                    Le recomendamos intentarlo en otra ocasi&oacute;n
-                    Gracias.
+                        Le recomendamos intentarlo en otra ocasi&oacute;n
+                        Gracias.
                     </div>
                 </div>
             </div>
         </div>
+
+<!--        <button type="button" class="btn btn-default" aria-label="Left Align">
+            <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+        </button>
+
+        <button type="button" class="btn btn-default btn-lg">
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star
+        </button>-->
 
     </body>
 </html>

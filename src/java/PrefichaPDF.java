@@ -1,9 +1,18 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
 
 import ConexionBD.ConexionOracle;
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfGState;
@@ -14,6 +23,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -22,32 +33,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class PrefichaPDF extends HttpServlet {
- String fichabd = null;
-        String periodobd = null;
-        String fechapdf = null;
-        String prefichabd = null;
-        String nombrebd = null;
-        String apellidosbd = null;
-        String curpbd = null;
-        String carrerabd = null;
-        String modalidadbd = null;
-        
+
+    String fichabd = null;
+    String periodobd = null;
+    String fechapdf = null;
+    String prefichabd = null;
+    String nombrebd = null;
+    String apellidosbd = null;
+    String curpbd = null;
+    String carrerabd = null;
+    String modalidadbd = null;
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             response.setContentType("application/pdf");
-            
+
             String curp = new String(request.getParameter("curp").getBytes("ISO-8859-1"), "UTF-8");
-            
-            
+
             ConexionOracle conexionOracle = new ConexionOracle();
-            
+
             String sql = "select * from PERSONALDATA_ASP_TAB where curp=" + "'" + curp + "'";
             System.out.println(sql);
-            System.out.println("Esta es la curp: "+curp);
-            
-            
-            
+            System.out.println("Esta es la curp: " + curp);
+
             conexionOracle.conectar();
             Connection conn = conexionOracle.getConnection();
             // driver@machineName:port:SID           ,  userid,  password
@@ -65,175 +74,271 @@ public class PrefichaPDF extends HttpServlet {
                 String apmat = rset.getString("apellido_mat");
                 apellidosbd = appat + " " + apmat;
                 curpbd = rset.getString("curp");
-//                carrerabd = rset.getString("carrera");
-//                modalidadbd = rset.getString("modalidad");
+                carrerabd = rset.getString("carrera");
+                modalidadbd = rset.getString("modalidad");
             }
-            carrerabd="INDUSTRIAL";
-            modalidadbd="ESCOLARIZADO";
-            
+
             try {
-                Document documento = new Document();
-                PdfWriter writer = PdfWriter.getInstance(documento, response.getOutputStream());
-                documento.open();
+
+                Document preficha = new Document();
+                PdfWriter writer = PdfWriter.getInstance(preficha, response.getOutputStream());
+                preficha.open();
 //encabezado
 //encabezado
 //encabezado
 //encabezado
-                Paragraph vacio = new Paragraph("  ", FontFactory.getFont("arial", 10, Font.BOLD));
-                vacio.setAlignment(Element.ALIGN_CENTER);
-                documento.add(vacio);
-                documento.add(vacio);
-                documento.add(vacio);
-                
+
+//                documento.add(vacio);
+//                documento.add(vacio);
+//                documento.add(vacio);
                 Paragraph depto = new Paragraph("Departamento de servicios escolares", FontFactory.getFont("arial", 20, Font.BOLD));
                 depto.setAlignment(Element.ALIGN_CENTER);
-                documento.add(depto);
                 
-                documento.add(vacio);
-                documento.add(vacio);
+                preficha.add(depto);
+
+                Paragraph vacio = new Paragraph("  ", FontFactory.getFont("arial", 10, Font.BOLD));
+                vacio.setAlignment(Element.ALIGN_CENTER);
+                preficha.add(vacio);
+//                preficha.add(vacio);
 //cuerpo
 //cuerpo
 //cuerpo
 //cuerpo
 //cuerpo
-                
+
                 Paragraph periodo_text = new Paragraph("Convocatoria de nuevo ingreso periodo: " + periodobd, FontFactory.getFont("arial", 10, Font.BOLD));
                 periodo_text.setAlignment(Element.ALIGN_CENTER);
-                documento.add(periodo_text);
-                
-                documento.add(vacio);
-                documento.add(vacio);
-                
-                Paragraph prueba = new Paragraph("prueba texto", FontFactory.getFont("arial", 10, Font.BOLD));
-                prueba.setAlignment(Element.ALIGN_CENTER);
-                documento.add(prueba);
-                
+                preficha.add(periodo_text);
+
+                preficha.add(vacio);
+                preficha.add(vacio);
+
+                Paragraph fotografia = new Paragraph("Fotografía", FontFactory.getFont("arial", 10, Font.BOLD));
+                fotografia.setAlignment(Element.ALIGN_CENTER);
+                preficha.add(fotografia);
+
                 PdfContentByte rectangulo_general = writer.getDirectContentUnder();
-                rectangulo_general.rectangle(50, 170, 500, 540);
+                rectangulo_general.rectangle(50, 28, 500, 740);
+//                rectangulo_general.re
                 rectangulo_general.fill();
-                drawRectangleSC(rectangulo_general, 50, 170, 500, 540);
-                
+                drawRectangleSC(rectangulo_general, 50, 28, 500, 740);
+
                 PdfContentByte rectangulo_periodo = writer.getDirectContentUnder();
-                rectangulo_periodo.rectangle(125, 680, 350, 20);
+                rectangulo_periodo.rectangle(125, 740, 350, 20);
                 rectangulo_periodo.fill();
-                drawRectangle(rectangulo_periodo, 125, 680, 350, 20);
+                drawRectangle(rectangulo_periodo, 125, 740, 350, 20);
+
+//                Image imagen = Image.getInstance(“hash_avatar.png”)
+                
+                
+//                Image img = Image.getInstance("C:\\Users\\Chavitta\\Documents\\GitHub\\MODULO_ASPIRANTE 28 nov 2014\\src\\java\\itt_logo.jpg");
+//                img.setAbsolutePosition(150f,650f);
+//                preficha.add(img);
+                
+                
+//                Image img = Image.getInstance("itt_logo.jpg");
+//                img.setAbsolutePosition(150f,650f);
+//                preficha.add(img);
+                
+                
+//              
+//                document.add(imagen);
                 
                 PdfContentByte espacio_imagen = writer.getDirectContentUnder();
-                espacio_imagen.rectangle(255, 580, 85, 80);
+                espacio_imagen.rectangle(255, 650, 85, 80);
                 espacio_imagen.fill();
-                drawRectangleSC(espacio_imagen, 255, 580, 85, 80);
-                
-                documento.add(vacio);
-                documento.add(vacio);
-                documento.add(vacio);
-                documento.add(vacio);
-                documento.add(vacio);
-                
+                drawRectangleSC(espacio_imagen, 255, 650, 85, 80);
+
+//                preficha.add(vacio);
+                preficha.add(vacio);
+
+                PdfContentByte fechaimpr = writer.getDirectContentUnder();
+                fechaimpr.rectangle(416, 650, 100, 35);
+                fechaimpr.fill();
+                drawRectangle(fechaimpr, 416, 650, 100, 35);
+//            drawRectangle(fechaimpr, 85, 530, 430, 25);
+
+                Paragraph fechapdf = new Paragraph("\tFecha de impresión                ", FontFactory.getFont("arial", 10, com.itextpdf.text.Font.BOLD));
+                fechapdf.setAlignment(Element.ALIGN_RIGHT);
+                preficha.add(fechapdf);
+
+                Paragraph fechapdf_fec = new Paragraph("\t" + fecha_hoy() + "                          ", FontFactory.getFont("arial", 10, com.itextpdf.text.Font.BOLD));
+                fechapdf_fec.setAlignment(Element.ALIGN_RIGHT);
+                preficha.add(fechapdf_fec);
+
+                preficha.add(vacio);
+
                 Paragraph no_preficha = new Paragraph("Preficha N°: " + prefichabd, FontFactory.getFont("arial", 20, Font.BOLD));
                 no_preficha.setAlignment(Element.ALIGN_CENTER);
-                documento.add(no_preficha);
-                
-                documento.add(vacio);
-                documento.add(vacio);
-                
+                preficha.add(no_preficha);
+
+                preficha.add(vacio);
+//                preficha.add(vacio);
+
                 PdfContentByte rectangulo_preficha_no = writer.getDirectContentUnder();
-                rectangulo_preficha_no.rectangle(85, 530, 430, 25);
+                rectangulo_preficha_no.rectangle(85, 605, 430, 25);
                 rectangulo_preficha_no.fill();
-                drawRectangle(rectangulo_preficha_no, 85, 530, 430, 25);
-                
+                drawRectangle(rectangulo_preficha_no, 85, 605, 430, 25);
+
                 PdfContentByte rectangulo_datos = writer.getDirectContentUnder();
-                rectangulo_datos.rectangle(85, 350, 430, 165);
+                rectangulo_datos.rectangle(85, 515, 430, 80);
+//                rectangulo_datos.rec
                 rectangulo_datos.fill();
-                drawRectangleSC(rectangulo_datos, 85, 350, 430, 165);
-                
+                drawRectangleSC(rectangulo_datos, 85, 515, 430, 80);
+
 //////////////////////////////
                 Paragraph nombre = new Paragraph("                                                                              Nombre:   " + nombrebd,
                         FontFactory.getFont("arial", 10, Font.BOLD));
                 nombre.setAlignment(Element.ALIGN_LEFT);
-                documento.add(nombre);
-                
-                documento.add(vacio);
-                
-                Paragraph apellidos = new Paragraph("                                                                           Apellidos:   " + apellidosbd,
+                preficha.add(nombre);
+
+//                preficha.add(vacio);
+
+                Paragraph apellidos = new Paragraph("                                                                                               "+ apellidosbd,
                         FontFactory.getFont("arial", 10, Font.BOLD));
                 apellidos.setAlignment(Element.ALIGN_LEFT);
-                documento.add(apellidos);
-                
-                documento.add(vacio);
-                
+                preficha.add(apellidos);
+
+//                preficha.add(vacio);
+
                 Paragraph CURP = new Paragraph("                                                                                 CURP:   " + curpbd,
                         FontFactory.getFont("arial", 10, Font.BOLD));
                 CURP.setAlignment(Element.ALIGN_LEFT);
-                documento.add(CURP);
-                
-                documento.add(vacio);
-                
+                preficha.add(CURP);
+
+//                preficha.add(vacio);
+
                 Paragraph carrera = new Paragraph("                                                            Carrera Solicitada:   " + carrerabd,
                         FontFactory.getFont("arial", 10, Font.BOLD));
                 carrera.setAlignment(Element.ALIGN_LEFT);
-                documento.add(carrera);
-                
-                documento.add(vacio);
-                
+                preficha.add(carrera);
+
+//                preficha.add(vacio);
+
                 Paragraph modalidad = new Paragraph("                                                                          Modalidad:   " + modalidadbd,
                         FontFactory.getFont("arial", 10, Font.BOLD));
                 modalidad.setAlignment(Element.ALIGN_LEFT);
-                documento.add(modalidad);
+                preficha.add(modalidad);
+
+                preficha.add(vacio);
+//                preficha.add(vacio);
                 
-                documento.add(vacio);
-                documento.add(vacio);
+                Paragraph formatoBanamex = new Paragraph("FORMATO UNIVERSAL PARA DEPÓSITOS EN SUCURSALES BANAMEX", FontFactory.getFont("arial", 10, Font.BOLD));
+                formatoBanamex.setAlignment(Element.ALIGN_CENTER);
+                preficha.add(formatoBanamex);
                 
+                PdfContentByte rectanguloDepositoB = writer.getDirectContentUnder();
+                rectanguloDepositoB.rectangle(85, 485, 430, 20);
+                rectanguloDepositoB.fill();
+                drawRectangle(rectanguloDepositoB, 85, 485, 430, 20);
+                
+                
+                PdfContentByte rectanguloPago = writer.getDirectContentUnder();
+                rectanguloPago.rectangle(85, 295, 430, 190);
+                rectanguloPago.fill();
+                drawRectangleSC(rectanguloPago, 85, 295, 430, 190);
+                
+                preficha.add(vacio);
+                
+                PdfContentByte rectanguloConcepto = writer.getDirectContentUnder();
+                rectanguloConcepto.rectangle(180, 440, 240, 35);
+//                rectangulo_datos.rec
+                rectanguloConcepto.fill();
+                drawRectangleSC(rectanguloConcepto, 180, 440, 240, 35);
+                
+                Paragraph formatoConceptoPre = new Paragraph("CONCEPTO: PREINSCRIPCIONES", FontFactory.getFont("arial", 10, Font.BOLD));
+                formatoConceptoPre.setAlignment(Element.ALIGN_CENTER);
+                preficha.add(formatoConceptoPre);
+                
+                Paragraph fechaEmision = new Paragraph("FECHA DE EMISIÓN: 18/12/2014", FontFactory.getFont("arial", 10, Font.BOLD));
+                fechaEmision.setAlignment(Element.ALIGN_CENTER);
+                preficha.add(fechaEmision);
+                
+                preficha.add(vacio);
+//                preficha.add(vacio);
+//                preficha.add(vacio);
+                preficha.add(vacio);
+                
+                Paragraph importe = new Paragraph("IMPORTE A PAGAR: $1,500.°°", FontFactory.getFont("arial", 15, Font.BOLD));
+                importe.setAlignment(Element.ALIGN_CENTER);
+                preficha.add(importe);
+                
+                preficha.add(vacio);
+                preficha.add(vacio);
+                preficha.add(vacio);
+//                preficha.add(vacio);
+//                preficha.add(vacio);
+                
+                String ref = "44353452342353464765634523434";
+                
+                Paragraph referencia = new Paragraph("                                                   REFERENCIA (B): "+ref, FontFactory.getFont("arial", 10, Font.BOLD));
+                referencia.setAlignment(Element.ALIGN_LEFT);
+                preficha.add(referencia);
+                
+                preficha.add(vacio);
+                
+                Paragraph descrConcepto = new Paragraph("DESCRIPCIÓN DEL CONCEPTO: CUOTA POR CONCEPTO DE PREINCRIPCIÓN.", FontFactory.getFont("arial", 10, Font.BOLD));
+                descrConcepto.setAlignment(Element.ALIGN_CENTER);
+                preficha.add(descrConcepto);
+                
+                preficha.add(vacio);
+                preficha.add(vacio);
+                preficha.add(vacio);
+                preficha.add(vacio);
+//                preficha.add(vacio);
+//                preficha.add(vacio);
+
                 Paragraph atencion = new Paragraph("Atención", FontFactory.getFont("arial", 15, Font.BOLD));
                 atencion.setAlignment(Element.ALIGN_CENTER);
-                documento.add(atencion);
-                
+                preficha.add(atencion);
+
                 PdfContentByte rectangulo_atencion = writer.getDirectContentUnder();
-                rectangulo_atencion.rectangle(245, 310, 100, 25);
+                rectangulo_atencion.rectangle(245, 214, 100, 25);
                 rectangulo_atencion.fill();
-                drawRectangle(rectangulo_atencion, 245, 310, 100, 25);
-                
+                drawRectangle(rectangulo_atencion, 245, 214, 100, 25);
+
                 PdfContentByte rectangulo_info = writer.getDirectContentUnder();
-                rectangulo_info.rectangle(85, 195, 430, 100);
+                rectangulo_info.rectangle(85, 80, 430, 100);
                 rectangulo_info.fill();
-                drawRectangle(rectangulo_info, 85, 180, 430, 120);
-                
-                documento.add(vacio);
-                documento.add(vacio);
-                
+                drawRectangle(rectangulo_info, 85, 80, 430, 120);
+
+                preficha.add(vacio);
+                preficha.add(vacio);
+
                 Paragraph informacion = new Paragraph(
                         "                             Para completar el proceso de preinscripción:\n"
-                                + "                           - Realiza el pago para tu examen de admisión\n"
-                                + "                              Con el voucher de pago impreso realiza tu pago en cualquier sucursal BANAMEX.\n"
-                                + "                           - Acude a las instalaciones del ITToluca para el canje del recibo oficial.\n"
-                                + "                              Acude al depto. de RECURSOS FINANCIEROS (Edif. \"A\") de lunes a viernes  de 9:00 a 18:00 hrs. y canjea el recibo bancario \n"
-                                + "                              por el recibo oficial de pago.\n"
-                                + "                           - Acude a las instalaciones del ITToluca para entregar tu documentación.\n"
-                                + "                              En el depto. de SERVICIOS ESCOLARES (edif. \"B4\" planta baja Ing. Logistica) de lunes a viernes  de 9:00 a 18:00 hors. \n"
-                                + "                              Entrega tu recibo oficial y tu preficha.", FontFactory.getFont("arial", 7, Font.BOLD));
+                        + "                           - Realiza el pago para tu examen de admisión\n"
+                        + "                              Con el voucher de pago impreso realiza tu pago en cualquier sucursal BANAMEX.\n"
+                        + "                           - Acude a las instalaciones del ITToluca para el canje del recibo oficial.\n"
+                        + "                              Acude al Depto. de RECURSOS FINANCIEROS (Edif. \"A\") de lunes a viernes  de 9:00 a 18:00 hrs. y canjea el recibo bancario \n"
+                        + "                              por el recibo oficial de pago.\n"
+                        + "                           - Acude a las instalaciones del ITToluca para entregar tu documentación.\n"
+                        + "                              En el Depto. de SERVICIOS ESCOLARES (Edif. \"B4\" planta baja Ing. Logistica) de lunes a viernes  de 9:00 a 18:00 hrs. \n"
+                        + "                              Entrega tu recibo oficial y tu preficha.", FontFactory.getFont("arial", 7, Font.BOLD));
                 informacion.setAlignment(Element.ALIGN_LEFT);
-                documento.add(informacion);
+                preficha.add(informacion);
 //  pie
 //  pie
 //  pie
 //  pie
 //  pie
-                documento.add(vacio);
-                documento.add(vacio);
-                
-                documento.addTitle("Preficha");
-                documento.addSubject("Instituto Tecnologico de Toluca");
-                documento.addKeywords("Instituto Tecnologico de Toluca");
-                documento.addAuthor("Departamento de Servisios escolares");
-                documento.addCreator("Departamento de Servisios escolares");
-                
-                documento.close();
-                
-                documento.close();
+                preficha.add(vacio);
+                preficha.add(vacio);
+
+                preficha.addTitle("Preficha");
+                preficha.addSubject("Instituto Tecnológico de Toluca");
+                preficha.addKeywords("Instituto Tecnológico de Toluca");
+                preficha.addAuthor("Departamento de Servicios escolares");
+                preficha.addCreator("Departamento de Servicios escolares");
+
+                preficha.close();
+
+                preficha.close();
             } catch (DocumentException de) {
                 throw new IOException(de.getMessage());
             }
         } catch (SQLException ex) {
-         Logger.getLogger(PrefichaPDF.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PrefichaPDF.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -241,7 +346,8 @@ public class PrefichaPDF extends HttpServlet {
         content.saveState();
         PdfGState state = new PdfGState();
         content.setGState(state);
-        content.setRGBColorFill(0xD8, 0xD8, 0xFA);
+        content.setRGBColorFill(213, 213, 213);
+//        content.setr
         content.setLineWidth((float) .5);
         content.rectangle(x, y, width, height);
         content.fillStroke();
@@ -254,6 +360,7 @@ public class PrefichaPDF extends HttpServlet {
 //        state.setFillOpacity(0.6f);
         content.setGState(state);
         content.setRGBColorFill(0xFF, 0xFF, 0xFA);
+        content.setColorStroke(BaseColor.BLUE);
         content.setLineWidth((float) .5);
         content.rectangle(x, y, width, height);
         content.fillStroke();
@@ -264,10 +371,20 @@ public class PrefichaPDF extends HttpServlet {
         content.saveState();
         PdfGState state = new PdfGState();
         content.setGState(state);
-        content.setRGBColorFill(0xFE, 0x2E, 0x64);
+        content.setRGBColorFill(0, 230, 255);
         content.setLineWidth((float) .5);
         content.rectangle(x, y, width, height);
         content.fillStroke();
         content.restoreState();
+    }
+
+    public static String fecha_hoy() {
+        Calendar fec = new GregorianCalendar();
+        int año = fec.get(Calendar.YEAR);
+        int mes = fec.get(Calendar.MONDAY);
+        int dia = fec.get(Calendar.DAY_OF_MONTH);
+        String fech = dia + "/" + (mes + 1) + "/" + año;
+
+        return fech;
     }
 }

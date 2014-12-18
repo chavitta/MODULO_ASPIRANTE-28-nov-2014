@@ -11,17 +11,17 @@ import oracle.jdbc.driver.OracleDriver;
 
 public class ConexionOracle {
 
-    private final String USUARIO = "desarrollo";
-    private final String PASS = "d3s4rr0ll0 ";
-    private final String SID = "SIA";
-    private final String HOST = "192.168.40.103";
-    private final int PUERTO = 1521;
-//    ************************************
-//    private final String USUARIO = "pruebas";
-//    private final String PASS = "pruebas";
-//    private final String SID = "xe";
-//    private final String HOST = "localhost";
+//    private final String USUARIO = "desarrollo";
+//    private final String PASS = "d3s4rr0ll0 ";
+//    private final String SID = "SIA";
+//    private final String HOST = "192.168.40.103";
 //    private final int PUERTO = 1521;
+//    ************************************
+    private final String USUARIO = "pruebas";
+    private final String PASS = "pruebas";
+    private final String SID = "xe";
+    private final String HOST = "localhost";
+    private final int PUERTO = 1521;
     private Connection connection;
 
     public Connection getConnection() {

@@ -3,8 +3,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!--<script src="JQueryClases/aparece.js" type="text/javascript"></script>-->
-        <!--<script src="JQueryClases/CargarFoto.js" type="text/javascript"></script>-->
         <script src="JQueryClases/PAES_js.js" type="text/javascript"></script>
         <script src="JQueryClases/jquery-1.11.1.min.js" type="text/javascript"></script>
         <script src="JQueryClases/bootstrap.min.js" type="text/javascript"></script>
@@ -59,7 +57,7 @@
                 <a> <label><input id="heleido" type="button" class="btn btn-info" value="Aceptar" style="display: none"></label></a>
 
             </div>
-            <div id="cargando">
+<!--            <div id="cargando">
                 <div class="spinner-wave">
                     <div></div>
                     <div></div>
@@ -68,7 +66,7 @@
                     <div></div>
                 </div>
 
-            </div>
+            </div>-->
         </div>
     </body>
 </html>

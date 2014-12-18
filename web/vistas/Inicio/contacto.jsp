@@ -11,6 +11,7 @@
         <script src="JQueryClases/Map.js" type="text/javascript"></script>
         <script src="JQueryClases/reCaptcha.js" type="text/javascript"></script>
 
+        <link href="Estilos/css/bootstrap.min.css.css" rel="stylesheet">
         <link href="Estilos/css/bootstrap1.css" rel="stylesheet">
         <link href="Estilos/css/style.css" rel="stylesheet">
         <link href="styles.css" type="text/css" rel="stylesheet"/>
@@ -71,7 +72,7 @@
                 </div>
                 <div id="telefono">
                     <div id="panelizquierda"><h4><b>Tel&eacute;fono:</b><br>01 (722) 208 7200 ext. 3051</h4></div>
-                    <div id="panelderecha"><img src="Imagenes/Phone-icon.png" alt="Tel?fono" width="50" height="50"></div> 
+                    <div id="panelderecha"><img src="Imagenes/Phone-icon.png" alt="Teléfono" width="50" height="50"></div> 
                 </div>
                 <div id="mail" class="ui-corner-all tooltip-examples">
                     <div id="panelizquierda"><h4><b>Email:</b><br><a data-toggle="tooltip" data-original-title="Envianos tus dudas y comentarios. Nosotros te responderemos"  href="#" onclick="lightbox_open_correo();">aspirantes@ittoluca.edu.mx</a></h4></div>
@@ -84,11 +85,8 @@
             </div>
 
             <div id="light_correo">
-                <!--<form action="servlet/SendMail" class="form-horizontal" id="formulario_inicio" onsubmit="return validar()">-->
-                <!--<form method="get" class="form-horizontal" id="formulario_inicio" onsubmit="return validar()" action="captchasubmit.jsp">-->
-                <!--<form method="get" class="form-horizontal" id="formulario_inicio" action="captchasubmit.jsp">-->
-                <!--<form method="get" class="form-horizontal" id="formulario_inicio" action="captchasubmit.jsp">-->
-                <form action="servlet/SendMail" class="form-horizontal" id="formulario_inicio" onsubmit="return validar()">
+                <form action="servlet/SendMail
+                      " name="formulario_inicio" method="GET" class="form-horizontal" id="formulario_inicio" onsubmit="return validar()">
                     <div class="control-group">
                         <label class="control-label" for="inputNombre">Nombre :</label>
                         <div class="controls">
@@ -107,29 +105,18 @@
                             <textarea name="txtDescripcion" id="txtDescripcion" style="overflow:auto; resize:none" rows="10" cols="30" placeholder="Inserte aquí el cuerpo de su mensaje."></textarea>
                         </div>
                     </div>
-                    <div class="control-group">
-                        <div class="controls">
-                            <div class="captchaSizeDivLarge">
-                                <img id="si_image_com" class="si-captcha" src="http://www.colordeu.es/BLOG/wp-content/plugins/si-captcha-for-wordpress/captcha/securimage_show.php?si_form_id=com&amp;prefix=vXbpWge13GNhnkNg" width="175" height="60" alt="Imagen CAPTCHA" title="Imagen CAPTCHA" />
-
-                                <input id="si_code_com" name="si_code_com" type="hidden"  value="vXbpWge13GNhnkNg" />
-
-                                <div id="si_refresh_com">
-                                    <a href="#" rel="nofollow" title="Refrescar imagen" onclick="si_captcha_refresh('si_image_com', 'com', '/BLOG/wp-content/plugins/si-captcha-for-wordpress/captcha', 'http://www.colordeu.es/BLOG/wp-content/plugins/si-captcha-for-wordpress/captcha/securimage_show.php?si_form_id=com&amp;prefix=');
-                                            return false;">
-                                        <img class="captchaImgRefresh" src="http://www.colordeu.es/BLOG/wp-content/plugins/si-captcha-for-wordpress/captcha/images/refresh.png" width="22" height="20" alt="Refrescar imagen" onclick="this.blur();" /></a>
-                                </div>
-                            </div>
-                            <div id="captchaInputDiv">
-                                <input id="captcha_code" name="captcha_code" type="text" value="" tabindex="4"  placeholder="Introduce el código"/>
-                                <!--<label id="captcha_code_label" for="captcha_code">Código CAPTCHA</label><span class="required"> *</span>-->
-                            </div>
-                            <button type="submit"class="btn btn-default">Enviar</button>
-                            <button type="button" class="btn btn-default" onClick="lightbox_close_correo();">Cancelar</button>
+                    <div id="imgCaptchaDiv" class="control-group">
+                        <img id="captcha" class="captcha" src="imgCaptcha.png" width="175" height="60" alt="Imagen CAPTCHA" title="Imagen CAPTCHA" />
+                        <br>
+                        <div id="txtCampCaptcha" class="controls">
+                            <input type="text" name="txtCaptcha" id="txtCaptcha" size="32" placeholder="Captcha">
+                            <!--<input type="submit" value="Calculate"/>-->
                         </div>
-                    </div>
-                    <div class="img_correo_pop">
-                        <img src="Imagenes/ico_correo.gif" alt="ico_Correo" width="110" height="110">
+                        <!--<div id="si_refresh_com">-->
+                        <br>
+                        <button type="button" class="btn btn-default" id="captcha_btn">Recarga</button>
+                        <button type="submit"class="btn btn-default">Enviar</button>
+                        <button type="button" class="btn btn-default" onClick="lightbox_close_correo();">Cancelar</button>
                     </div>
                 </form>
             </div>
@@ -138,3 +125,19 @@
     </body>
 </form>
 </html>
+
+<!--<script type="text/javascript">
+    var form = $('#formulario_inicio');
+    form.submit(function() {
+        $.ajax({
+            type: form.attr('method'),
+            url: form.attr('action'),
+            data: form.serialize(),
+            success: function(data) {
+
+            }
+        });
+
+        return false;
+    });
+</script>-->

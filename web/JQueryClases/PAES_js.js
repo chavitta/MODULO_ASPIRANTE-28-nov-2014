@@ -87,6 +87,33 @@ $(document).ready(function() {
 
     periodo(true);
 
+    $('#captcha_btn').click(function() {
+        recarga();
+    });
+
+
+    $('#formulario_inicio').submit(function(event) {
+        var captcha = document.getElementById("txtCaptcha").value;
+
+        alert("El captcha es " + captcha);
+        $.ajax({
+            type: "POST",
+            async: false,
+            url: "ValidaCap",
+            data: {code: captcha},
+            success: function(data) {
+                if (data === "si")
+                {
+
+                } else
+                {
+                    event.preventDefault();
+
+                    recarga();
+                }
+            }
+        });
+    });
 
     $('#selectedonacimiento').change(function() {
 
@@ -677,7 +704,7 @@ function validar_numeros(id) {
 //validar solo letras 
 function validar_letras(id) {
     $(id).change(function() {
-        var letras = $("#"+id).val();
+        var letras = $("#" + id).val();
         patron_letra = /^[A-Za-z-ñäöüßÄÖÜáéíóúÁÉÍÓÚ ]+$/;
         if (!patron_letra.test(letras)) {
             $(id).css("border", "1px solid red");
@@ -1341,4 +1368,11 @@ function periodo(per) {
 function closeDialog(id) {
     $('#overlay').fadeOut(1000);
     $('#popup').fadeOut(1000);
+}
+
+function recarga() {
+//    document.getElementById('txtCaptcha').value="";
+    $('#txtCaptcha').val("");
+    
+    $('#captcha').attr('src', 'imgCaptcha.png?' + new Date().getTime());
 }

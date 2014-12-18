@@ -12,7 +12,7 @@
         <script src="JQueryClases/PAES_js.js" type="text/javascript"></script>
     </head>
     <body>
-        <br>
+<!--        <br>
         <div id="carrera" class="demo ui-tabs ui-widget ui-corner-all">
             <div id="pestana_carrera">
                 <ul id="ul_carrera" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
@@ -35,7 +35,7 @@
                         <form name="crp" id="crp" action="servlet/ConsultaCurp" onsubmit="curpvalida()">
                             <input  size="24" type="text" name="curp" id="curp" maxlength="18" onkeyup="this.value = this.value.toUpperCase()" placeholder="Introduce tu CURP"/>
                             <button type="submit" value=enviar class="btn btn-default">Preficha</button>
-                            <!--<button type=submit onclick="curpvalida()"value=enviar class="btn btn-default">Preficha</button>-->
+                            <button type=submit onclick="curpvalida()"value=enviar class="btn btn-default">Preficha</button>
                         </form>
                     </div>
                 </div>
@@ -64,6 +64,10 @@
                 <button type="button" class="btn btn-default" onClick="lightbox_close();"><a href="se-llamaba-emiliano.pdf" target="_blank">Cargar foto</a></button>
                 <button type="button" class="btn btn-default" onClick="lightbox_close();">Cancelar</button>
             </div>
-        </div>
+        </div>-->
+
+<div id="construccion">
+    <img alt="alerta" src="Imagenes/construyendo_web.gif" width="90%" height="80%">
+</div>
     </body>
 </html>
