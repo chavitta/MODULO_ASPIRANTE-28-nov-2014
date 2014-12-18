@@ -206,7 +206,7 @@
                 </section>             
             </div>           
         </div>      
-        <label id="ObjetoPersonales" value="${DatosAsp}" style="display: block"></label>
+        <label id="ObjetoPersonales" value="${DatosAsp}" style="display: none">${DatosAsp}</label>
         <div id="continuarsocioeconomicos">
             <fieldset id="botones_continuar">
                 <a href="/MODULO_ASPIRANTE/Datos_Aspirante.jsp"><input type="button" id="regresar_socioeconomicos" title="CONTINUAR" value="Regresar"  ></a>

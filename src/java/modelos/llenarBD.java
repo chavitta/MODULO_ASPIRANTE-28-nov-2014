@@ -8,6 +8,7 @@ package modelos;
 import beans.BaseDatos;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 /**
  *
@@ -197,8 +198,8 @@ public class llenarBD {
         lista.add(b);
         return lista;
     }
-    
-      public List<BaseDatos> llenaCasaEs() {
+
+    public List<BaseDatos> llenaCasaEs() {
         List<BaseDatos> lista = new ArrayList<>();
         BaseDatos b;
         b = new BaseDatos();
@@ -223,8 +224,8 @@ public class llenarBD {
         lista.add(b);
         return lista;
     }
-      
-      public List<BaseDatos> llenaZonaProcedencia() {
+
+    public List<BaseDatos> llenaZonaProcedencia() {
         List<BaseDatos> lista = new ArrayList<>();
         BaseDatos b;
         b = new BaseDatos();
@@ -249,7 +250,8 @@ public class llenarBD {
         lista.add(b);
         return lista;
     }
-        public List<BaseDatos> llenaViveCon() {
+
+    public List<BaseDatos> llenaViveCon() {
         List<BaseDatos> lista = new ArrayList<>();
         BaseDatos b;
         b = new BaseDatos();
@@ -274,4 +276,18 @@ public class llenarBD {
         lista.add(b);
         return lista;
     }
+
+    public ArrayList <String> Formatea(String dats) {
+
+     ArrayList <String> Datos = new  ArrayList<>();
+       int i=0;
+        StringTokenizer cad = new StringTokenizer(dats, "||", false);
+        while (cad.hasMoreTokens()) {
+            String h;
+            System.out.println(h=cad.nextToken());
+            Datos.add(h);          
+        }        
+           return Datos;
+    }
+
 }

@@ -401,8 +401,8 @@
                                     <p><label name="cursopropedeutico" id="cursopropedeutico_label" class="labels_carrera">Tomaste Curso <br> Propedeutico en  la Institucion:</label>
                                         <select name="curso_sino" id="propedeuticoSelect" id="curso_sino"  >
                                             <option value="--">--</option>
-                                            <option value="si">Si</option>
-                                            <option value="no">No</option>
+                                            <option value="Y">Si</option>
+                                            <option value="N">No</option>
                                         </select></p>
                                 </fieldset>
                             </section>               

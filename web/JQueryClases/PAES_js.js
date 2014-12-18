@@ -218,11 +218,20 @@ $(document).ready(function() {
         $("#contenido").load("/MODULO_ASPIRANTES/vistas/Aspirante/Datos_Socioeconomicos.jsp");
     });
     $('#continuar_socioeconomicos').click(function() {
-
+//        var DatosFormu1 = $('#ObjetoPersonales').val();
+        var DatosFormu1 = $('#ObjetoPersonales').text();
         if (nonulos_socioeconomicos() === false || nonulos_socioeconomicos() === '') {
 //            alert('Complete sus  datos');
-        } else {
 
+        } else {
+           alert(DatosFormu1);
+            
+            $.get('/MODULO_ASPIRANTE/DatosAspirante',
+                    {DatosFormu1: DatosFormu1},
+            function(retorno) {
+
+            }
+            );
             $('#fondofinalizado').show();
             $('#finalizado').show();
         }
@@ -233,17 +242,17 @@ $(document).ready(function() {
 //    });
 //     cargar confirmar Datos
     $('#continuar_datos').click(function() {
-var TodNulos=nonulos();
+        var TodNulos = nonulos();
 //Validaciones  de  no  nulos  listas  no  borrar estas  lineas comentadas :D
-        if (TodNulos=== false || TodNulos === '' || TodNulos === 0) {
+        if (TodNulos === false || TodNulos === '' || TodNulos === 0) {
 //            alert("Aun no han sido completados  todos  sus datos");
         } else {
             //enviar  en el servlet
-              alert("llamando...");
+            alert("llamando...");
             $.get('/MODULO_ASPIRANTE/RecibeDatosPersonales',
-                    {TodNulos:TodNulos},
+                    {TodNulos: TodNulos},
             function(retorno) {
-                
+
             }
             );
             ConfirmaDatos();
@@ -852,8 +861,9 @@ function personales() {
                 && estado !== false &&
                 capacidad !== false &&
                 sangre !== false && fecha !== false) {
-            personalesDat = curp + "||" + paterno + "||" + materno + "||" + nombre + "||" + sexo + "||" + correo +
-                    "||" + edocivil + "||" + pais + "||" + estado + "||" + municipio + "||" + ciudad + "||" + capacidad + "||" + sangre + "||" + fecha;
+            personalesDat = curp + "||" + nombre +"||" + paterno + "||" + materno + "||" + fecha+ "||" + pais + "||" + estado + "||" + municipio + "||" + ciudad
+                    + "||" + sexo +"||" + edocivil + "||" + sangre + "||" + capacidad  + "||" + correo ;
+                   
 
             return  personalesDat;
         }
@@ -870,8 +880,8 @@ function personales() {
                 pais !== false &&
                 capacidad !== false &&
                 sangre !== false && fecha !== false) {
-            personalesDat = curp + "||" + paterno + "||" + materno + "||" + nombre + "||" + sexo + "||" + correo +
-                    "||" + edocivil + "||" + pais + "||" + capacidad + "||" + sangre + "||" + fecha;
+     personalesDat = curp + "||" + nombre +"||" + paterno + "||" + materno + "||" + fecha+ "||" + pais + "||" + null + "||" + null+ "||" + null
+                    + "||" + sexo +"||" + edocivil + "||" + sangre + "||" + capacidad  + "||" + correo ;
 
             return  personalesDat;
         }
@@ -886,7 +896,7 @@ function personales() {
 
 
 function direccion() {
-var  datosDir;
+    var datosDir;
     var estado = ObtenerValor('#input_estado');
     var municipio = ObtenerValor('#dirmunicipio');
     var numExt = ObtenerValor('#dirnumext');
@@ -899,8 +909,8 @@ var  datosDir;
     var fijo = ObtenerValor('#tel2');
     if (estado !== false && localidad !== false && dcalle !== false && dcolonia !== false &&
             numExt !== false && municipio !== false && codigopostal !== false
-            && fijo !== false && celular!==false) {
-        datosDir=estado+"||"+municipio+"||"+localidad+"||"+dcolonia+"||"+dcalle+"||"+numExt+"||"+numInt+"||"+codigopostal+"||"+celular+"||"+fijo;
+            && fijo !== false && celular !== false) {
+        datosDir = estado + "||" + municipio + "||" + localidad + "||" + dcolonia + "||" + dcalle + "||" + numExt + "||" + numInt + "||" + codigopostal + "||" + celular + "||" + fijo;
         return datosDir;
     } else {
         alert("Es necesario que complete su dirección");
@@ -910,7 +920,7 @@ var  datosDir;
 
 
 function escprocedencia() {
-    var  DatosEscProd;
+    var DatosEscProd;
     var estado = ObtenerValor('#inputestado');
     var municipio = ObtenerValor('#municipio');
     var tipoescuela = ObtenerValor('#combo_tipoescuela');
@@ -925,11 +935,11 @@ function escprocedencia() {
     if (escuela === '20') {
         if (estado !== false && municipio !== false && tipoescuela !== false &&
                 otraescuela !== false &&
-                escuela !== false 
+                escuela !== false
                 && clavescuela !== false && mesinicio !== false && anioinicio !== false && mesfin !== false && aniofin !== false
                 && promedio !== false) {
-            DatosEscProd=estado+"||"+municipio+"||"+tipoescuela+"||"+otraescuela+"||"+escuela+
-                    "||"+clavescuela+"||"+mesinicio+"||"+anioinicio+"||"+mesfin+"||"+aniofin+"||"+promedio;
+            DatosEscProd = estado + "||" + municipio + "||" + tipoescuela + "||" + otraescuela + "||" + escuela +
+                    "||" + clavescuela + "||" + mesinicio + "||" + anioinicio + "||" + mesfin + "||" + aniofin + "||" + promedio;
             return DatosEscProd;
         } else {
             alert("Complete datos de escuela de procedencia");
@@ -940,7 +950,9 @@ function escprocedencia() {
                 escuela !== false
                 && clavescuela !== false && mesinicio !== false && anioinicio !== false && mesfin !== false && aniofin !== false
                 && promedio !== false) {
-            return true;
+            DatosEscProd = estado + "||" + municipio + "||" + tipoescuela + "||" + null + "||" + escuela +
+                    "||" + clavescuela + "||" + mesinicio + "||" + anioinicio + "||" + mesfin + "||" + aniofin + "||" + promedio;
+            return DatosEscProd;
         } else {
             alert("Complete datos de escuela de procedencia");
             return false;
@@ -956,8 +968,8 @@ function carreradeseada() {
     var carrera3 = ObtenerValor('#carreraopcion3');
     var curso = ObtenerValor('#propedeuticoSelect');
     if (carrera1 !== false && carrera2 !== false && carrera3 !== false && curso !== false) {
-       
-       DatCarrera=carrera1+"||"+carrera2+"||"+carrera3;
+
+        DatCarrera = carrera1 + "||" + carrera2 + "||" + carrera3+"||"+curso;
         return DatCarrera;
     } else {
         alert("Complete las opciones de carrera");
@@ -965,16 +977,16 @@ function carreradeseada() {
     }
 }
 function nonulos() {
-var persoDatos=personales();
-var Datosdir=direccion();
-var Datosper=escprocedencia();
-var DatosCarr=carreradeseada();
-var DatosFor1;
+    var persoDatos = personales();
+    var Datosdir = direccion();
+    var Datosper = escprocedencia();
+    var DatosCarr = carreradeseada();
+    var DatosFor1;
     if (persoDatos !== false && Datosdir !== false
             && Datosper !== false && DatosCarr !== false
             ) {
         ConfirmaDatos();
-        DatosFor1=persoDatos+"||"+Datosdir+"||"+Datosper+"||"+DatosCarr;
+        DatosFor1 = persoDatos + "||" + Datosdir + "||" + Datosper + "||" + DatosCarr;
         return DatosFor1;
     } else {
         return false;
@@ -997,6 +1009,7 @@ function checaSelect(id) {
 function evaluar() {
 
 //obtener  fecha 
+var fechaN;
     var bandera = true;
     var anio = $("#combo_anio").val();
     var mes = $("#combo_mes").val();
@@ -1049,7 +1062,7 @@ function evaluar() {
                 $('#combo_anio').css("border", "");
                 $('#combo_mes').css("border", "");
                 $('#combo_dia').css("border", "");
-                return true;
+                return fechaN=dia+"/"+mes+"/"+anio;
             }
         }
     }
