@@ -132,7 +132,7 @@ public class Procedimientos {
 ///respuesta 
     //
 
-    public int InsertaPersonales(String curp, String nombre, String Apaterno, String Amaterno, Date FecNac,
+    public int InsertaPersonales(String curp, String nombre, String Apaterno, String Amaterno, String FecNac,
             String Pais, int Estado, String CdNac, char sexo, String EdoCivil, String sangre, String capacidad,
             char Curso, String correo) {
         int IdAspirante = 0;
@@ -146,7 +146,7 @@ public class Procedimientos {
             cs.setString(2, nombre);
             cs.setString(3, Apaterno);
             cs.setString(4, Amaterno);
-            cs.setDate(5, FecNac);
+            cs.setString(5, FecNac);
             cs.setString(6, Pais);
             cs.setInt(7, Estado);
             cs.setString(8, CdNac);
@@ -161,8 +161,8 @@ public class Procedimientos {
             cs.registerOutParameter(17, OracleTypes.VARCHAR);
             cs.execute();
             IdAspirante = cs.getInt(15);
-            System.out.println("***** "+cs.getInt(16));
-            System.out.println("****************Error************************ "+cs.getString(17));
+            System.out.println("***** " + cs.getInt(16));
+            System.out.println("****************Error************************ " + cs.getString(17));
             cs.close();
         } catch (SQLException ex) {
             Logger.getLogger(Procedimientos.class.getName()).log(Level.SEVERE, null, ex);
@@ -170,6 +170,59 @@ public class Procedimientos {
             Logger.getLogger(Procedimientos.class.getName()).log(Level.SEVERE, null, ex);
         }
         return IdAspirante;
+    }
+
+    public int InsertaDireccion(int IdAsp, int Estado, String Ciudad, String calle, int NumInt, int NumExt,
+            String colonia, int CodPost, int TelFijo, int TelCel) {
+        int Exitoso = 0;
+        try {
+            String result = "";
+            int msgCodeError = -1;
+            String msgDescError = "";
+            Conexion con = new Conexion(user, pass);
+            cs = con.getConnection().prepareCall("{call PQ_INSERT_ASPIRANTE_1.SET_REGISTRO_DOMICILIO_ASP_SP(?,?,?,?,?,?,?,?,?,?,?,?)}");
+            cs.setInt(1, IdAsp);
+            cs.setInt(2, Estado);
+            cs.setString(3, Ciudad);
+            cs.setString(4, calle);
+            cs.setInt(5, NumInt);
+            cs.setInt(6, NumExt);
+            cs.setString(7, colonia);
+            cs.setInt(8, CodPost);
+            cs.setInt(9, TelFijo);
+            cs.setInt(10, TelCel);
+            cs.registerOutParameter(11, OracleTypes.NUMBER);
+            cs.registerOutParameter(12, OracleTypes.NUMBER);
+            cs.execute();
+            Exitoso = cs.getInt(11);
+            System.out.println("Error***** " + cs.getNString(12));
+        } catch (SQLException ex) {
+            Logger.getLogger(Procedimientos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Procedimientos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Exitoso;
+    }
+
+    public void InsertaEscProcedencia() {
+
+        try {
+            String result = "";
+            int msgCodeError = -1;
+            String msgDescError = "";
+            Conexion con = new Conexion(user, pass);
+            try {
+                cs = con.getConnection().prepareCall("{call PQ_INSERT_ASPIRANTE_1.SET_REGISTRO_CARRERA_ASP_SP(?,?,?,?,?)}");
+                
+                
+                
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Procedimientos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Procedimientos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     public static void main(String[] args) {
@@ -181,7 +234,8 @@ public class Procedimientos {
         try {
             pais = p.getCatalogos(1, pk);
             System.out.println("");
-            p.InsertaPersonales("BAME930405MMCRCL03", "Elizabeth", "Barrueta", "Macedo", new Date(3/4/1230), "M", 3, "4", 'F', "S", "A", "Visual", 'Y', "e");
+//            System.out.println("***********"+new java.sql.Date(90,10 , 1));
+            p.InsertaPersonales("B", "E", "B", "M", "12/11/90", "M", 3, "4", 'F', "S", "A", "V", 'Y', "e");
         } catch (SQLException ex) {
             Logger.getLogger(Procedimientos.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -189,4 +243,3 @@ public class Procedimientos {
         }
     }
 }
-

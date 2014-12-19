@@ -92,12 +92,12 @@ public class DatosAspirante extends HttpServlet {
             System.out.println(DatosPersonalesAsp.get(13));
             if(!"null".equals(DatosPersonalesAsp.get(6))){
             int res = p.InsertaPersonales(DatosPersonalesAsp.get(0), DatosPersonalesAsp.get(1), DatosPersonalesAsp.get(2), DatosPersonalesAsp.get(3),
-                    sqlDate, DatosPersonalesAsp.get(5),Integer.parseInt(DatosPersonalesAsp.get(6)),DatosPersonalesAsp.get(7), DatosPersonalesAsp.get(9).charAt(0), DatosPersonalesAsp.get(10),
+                    DatosPersonalesAsp.get(4), DatosPersonalesAsp.get(5),Integer.parseInt(DatosPersonalesAsp.get(6)),DatosPersonalesAsp.get(7), DatosPersonalesAsp.get(9).charAt(0), DatosPersonalesAsp.get(10),
                     DatosPersonalesAsp.get(11), DatosPersonalesAsp.get(12), DatosPersonalesAsp.get(DatosPersonalesAsp.size()-1).charAt(0), DatosPersonalesAsp.get(13));
             System.out.println(res+"********************");
             }else{
              int res = p.InsertaPersonales(DatosPersonalesAsp.get(0), DatosPersonalesAsp.get(1), DatosPersonalesAsp.get(2), DatosPersonalesAsp.get(3),
-                    sqlDate, DatosPersonalesAsp.get(5), 2,DatosPersonalesAsp.get(7), DatosPersonalesAsp.get(9).charAt(0), DatosPersonalesAsp.get(10),
+                     DatosPersonalesAsp.get(4), DatosPersonalesAsp.get(5), 2,DatosPersonalesAsp.get(7), DatosPersonalesAsp.get(9).charAt(0), DatosPersonalesAsp.get(10),
                     DatosPersonalesAsp.get(11), DatosPersonalesAsp.get(12), DatosPersonalesAsp.get(DatosPersonalesAsp.size()-1).charAt(0), DatosPersonalesAsp.get(13));
             System.out.println(res+"********************");
             
