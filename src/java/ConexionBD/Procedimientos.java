@@ -7,10 +7,7 @@ package ConexionBD;
 
 import beans.BaseDatos;
 import java.sql.CallableStatement;
-<<<<<<< HEAD
-=======
 import java.sql.Date;
->>>>>>> origin/master
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -26,15 +23,6 @@ import oracle.jdbc.driver.OracleTypes;
  */
 public class Procedimientos {
 
-<<<<<<< HEAD
-    BaseDatos bd;
-
-    public List<BaseDatos> getCatalogos(String user, String pass, int opc, int pk) throws SQLException, ClassNotFoundException {
-        String result = "";
-        int msgCodeError = -1;
-        String msgDescError = "";
-        CallableStatement cs = null;
-=======
     String user = "desarrollo";
     String pass = "d3s4rr0ll0";
     BaseDatos bd;
@@ -45,7 +33,6 @@ public class Procedimientos {
         int msgCodeError = -1;
         String msgDescError = "";
 
->>>>>>> origin/master
         List<BaseDatos> Estados;
         Estados = new ArrayList<>();
 
@@ -79,8 +66,6 @@ public class Procedimientos {
         }
         return Estados;
     }
-<<<<<<< HEAD
-=======
 //DESARROLLO.PQ_CHECK_ASPIRANTE_1 recibe   curp ****LLamando  funciones*** 
     //retorna  
     // numbern 
@@ -219,8 +204,8 @@ public class Procedimientos {
         return Exitoso;
     }
 
-    public void InsertaEscProcedencia() {
-
+    public int InsertaEscProcedencia(int IdAsp, int Carrera, int opcion) {
+        int Exitoso = 0;
         try {
             String result = "";
             int msgCodeError = -1;
@@ -228,41 +213,81 @@ public class Procedimientos {
             Conexion con = new Conexion(user, pass);
             try {
                 cs = con.getConnection().prepareCall("{call PQ_INSERT_ASPIRANTE_1.SET_REGISTRO_CARRERA_ASP_SP(?,?,?,?,?)}");
-                
-                
-                
+                cs.setInt(1, IdAsp);
+                cs.setInt(2, Carrera);
+                cs.setInt(3, opcion);
+                cs.registerOutParameter(4, OracleTypes.NUMBER);
+                cs.registerOutParameter(5, OracleTypes.VARCHAR);
+                cs.executeQuery();
+                Exitoso = cs.getInt(5);
+                System.out.println("Error****** " + cs.getString(5));
+
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(Procedimientos.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Procedimientos.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        return Exitoso;
     }
->>>>>>> origin/master
+
+    public int insertaEscProcedencia(int IdAsp, String Escuela, int Estado, String clave, String TipoEsc,
+            String PerInicio, String PerFin, int promedio) {
+        int Exitoso = 0;
+        try {
+            String result = "";
+            int msgCodeError = -1;
+            String msgDescError = "";
+            Conexion con = new Conexion(user, pass);
+            cs = con.getConnection().prepareCall("{call PQ_INSERT_ASPIRANTE_1.SET_REGISTRO_ESCPROC_ASP_SP (?,?,?,?,?,?,?,?,?,?)}");
+            cs.setInt(1, IdAsp);
+            cs.setString(2, Escuela);
+            cs.setInt(3, Estado);
+            cs.setString(4, clave);
+            cs.setString(5, TipoEsc);
+            cs.setString(6, PerInicio);
+            cs.setString(7, PerFin);
+            cs.setInt(8, promedio);
+            cs.registerOutParameter(9, OracleTypes.NUMBER);
+            cs.registerOutParameter(10, OracleTypes.VARCHAR);
+            Exitoso = cs.getInt(9);
+            System.out.println("Error**** " + cs.getString(10));
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Procedimientos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Procedimientos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Exitoso;
+    }
+
+    public void InsertaSocioeconomicos() {
+        try {
+            String result = "";
+            int msgCodeError = -1;
+            String msgDescError = "";
+            Conexion con = new Conexion(user, pass);
+            cs = con.getConnection().prepareCall("{call PQ_INSERT_ASPIRANTE_1.SET_REGISTRO_SOCIOECONOMICOS_SP(?,?,?,?,?,?,?,?,?,?)}");
+//        cs.setInt(1, );
+        } catch (SQLException ex) {
+            Logger.getLogger(Procedimientos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Procedimientos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public static void main(String[] args) {
         String pass = "d3s4rr0ll0";
         String usuario = "desarrollo";
         List<BaseDatos> pais;
-<<<<<<< HEAD
-      int pk = 0;
-        Procedimientos p = new Procedimientos();
-        try {
-            pais = p.getCatalogos(usuario, pass, 1, pk);
-            System.out.println("");
-=======
         int pk = 0;
         Procedimientos p = new Procedimientos();
         try {
             pais = p.getCatalogos(1, pk);
             System.out.println("");
-//            System.out.println("***********"+new java.sql.Date(90,10 , 1));
-            p.InsertaPersonales("B", "E", "B", "M", "12/11/90", "M", 3, "4", 'F', "S", "A", "V", 'Y', "e");
->>>>>>> origin/master
-        } catch (SQLException ex) {
-            Logger.getLogger(Procedimientos.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+//            System.out.println("***********"+new java.sql.Date(90,10,1));
+            p.InsertaPersonales("B", "E", "B", "M", "13/04/1990", "M", 3, "4", 'F', "S", "A", "V", 'Y', "e");
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(Procedimientos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

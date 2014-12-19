@@ -4,14 +4,6 @@
  * and open the template in the editor.
  */
 
-<<<<<<< HEAD
-function Pais() {
-
-
-
-}
-=======
->>>>>>> origin/master
 
 //****************
 $('#crp').submit(function(event) {
@@ -68,15 +60,7 @@ function ConfirmaDatos() {
     $('#confirmacurp').text(curp);
     $('#confirmacorreo').text(correo);
     $('#confirmacarrera ').text(carrera);
-<<<<<<< HEAD
-    $.get('/MODULO_ASPIRANTE/GuardaCorreo',
-            {correo: correo},
-    function(retorno) {
-    }
-    );
-=======
 
->>>>>>> origin/master
 }
 
 function Filtros(id, data) {
@@ -94,43 +78,11 @@ $(document).ready(function() {
 
     periodo(true);
 
-<<<<<<< HEAD
-    $('#captcha_btn').click(function() {
-        recarga();
-    });
-
-
-    $('#formulario_inicio').submit(function(event) {
-        var captcha = document.getElementById("txtCaptcha").value;
-        $.ajax({
-            type: "POST",
-            async: false,
-            url: "ValidaCap",
-            data: {code: captcha},
-            success: function(data) {
-                if (data === "si")
-                {
-                    
-                } else
-                {
-                    alert("Captcha inválido");
-                    event.preventDefault();
-                    recarga();
-                }
-            }
-        });
-    });
-=======
->>>>>>> origin/master
 
     $('#selectedonacimiento').change(function() {
 
         var pk = $('#selectedonacimiento option:selected').val();
         var opcion = "Mun";
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
         $.getJSON("/MODULO_ASPIRANTE/CargaEstado",
                 {pk: pk, opcion: opcion},
         function(data) {
@@ -266,12 +218,6 @@ $(document).ready(function() {
         $("#contenido").load("/MODULO_ASPIRANTES/vistas/Aspirante/Datos_Socioeconomicos.jsp");
     });
     $('#continuar_socioeconomicos').click(function() {
-<<<<<<< HEAD
-
-        if (nonulos_socioeconomicos() === false || nonulos_socioeconomicos() === '') {
-//            alert('Complete sus  datos');
-        } else {
-=======
 //        var DatosFormu1 = $('#ObjetoPersonales').val();
         var DatosFormu1 = $('#ObjetoPersonales').text();
         if (nonulos_socioeconomicos() === false || nonulos_socioeconomicos() === '') {
@@ -286,7 +232,6 @@ $(document).ready(function() {
 
             }
             );
->>>>>>> origin/master
             $('#fondofinalizado').show();
             $('#finalizado').show();
         }
@@ -297,17 +242,6 @@ $(document).ready(function() {
 //    });
 //     cargar confirmar Datos
     $('#continuar_datos').click(function() {
-<<<<<<< HEAD
-
-//Validaciones  de  no  nulos  listas  no  borrar estas  lineas comentadas :D
-//        if (nonulos() === false || nonulos() === '' || nonulos === 0) {
-////            alert("Aun no han sido completados  todos  sus datos");
-//        } else {
-        ConfirmaDatos();
-        $('#div_fondomarco').show();
-        $('#divmarco').show();
-//        }
-=======
         var TodNulos = nonulos();
 //Validaciones  de  no  nulos  listas  no  borrar estas  lineas comentadas :D
         if (TodNulos === false || TodNulos === '' || TodNulos === 0) {
@@ -325,24 +259,11 @@ $(document).ready(function() {
             $('#div_fondomarco').show();
             $('#divmarco').show();
         }
->>>>>>> origin/master
     });
     $('#cancelar').on('click', function() {
         $('#divmarco').hide();
         $('#div_fondomarco').hide();
     });
-<<<<<<< HEAD
-    $('#confirmar').on('click', function() {
-        $('#divmarco').hide();
-        $('#div_fondomarco').hide();
-        $.get('/MODULO_ASPIRANTE/Socioeconomicos',
-                {},
-                function(retorno) {
-                    $("#contenido").load("/MODULO_ASPIRANTE/vistas/Aspirante/Datos_Socioeconomicos.jsp");
-                }
-        );
-//        $("#contenido").load("vistas/Aspirante/CargarFoto.jsp");
-=======
 
     $('#confirmar').on('click', function() {
         var curp = $('#inputcurp').val();
@@ -367,7 +288,6 @@ $(document).ready(function() {
 //                $('#div_fondomarco').hide();
 //            }
         });
->>>>>>> origin/master
     });
     //carga correcta
     $('#cerrar').on('click', function() {
@@ -426,37 +346,9 @@ $(document).ready(function() {
         $('#fondofinalizado').hide();
         $('#finalizado').hide();
     });
-<<<<<<< HEAD
-    //solo numeros
-//    $("#tel1 , #lada1, #tel2, #lada2, #cp, #tel_fijo, #tel_cel, #tel_trabajo, #numcelular ").keydown(function(event) {
-//        if (event.shiftKey)
-//        {
-//            event.preventDefault();
-//        }
-//
-//        if (event.keyCode === 46 || event.keyCode === 8) {
-//        }
-//        else {
-//            if (event.keyCode < 95) {
-//                if (event.keyCode < 48 || event.keyCode > 57) {
-//                    event.preventDefault();
-//                }
-//            }
-//            else {
-//                if (event.keyCode < 96 || event.keyCode > 105) {
-//                    event.preventDefault();
-//                }
-//            }
-//        }
-//    });
-//otra escuela
-    $('#combo_tipoescuela').change(function() {
-        var tipo_otra = ObtenerValor('#combo_tipoescuela');
-=======
 
     $('#escuelaprocedencia').change(function() {
         var tipo_otra = ObtenerValor('#escuelaprocedencia');
->>>>>>> origin/master
         if (tipo_otra === "20") {
             $('#opcion_otraescuela_aparece').show();
         } else {
@@ -524,13 +416,6 @@ $(document).ready(function() {
             $(this).next().slideDown();
         }
     });
-<<<<<<< HEAD
-//    $(".tooltip-examples a").tooltip({
-//        placement: 'top'
-//    });
-    //load  de sub-modulo  INICIO
-=======
->>>>>>> origin/master
 
     $('#inicio').click(function() {
         $("#Contenedor_Bienvenido").load("vistas/Inicio/inicio.jsp", function(responseTxt, statusTxt, xhr) {
@@ -590,7 +475,7 @@ $(document).ready(function() {
 ////                var frame = document.getElementById('grande')
 //                var frame = $('#grande').val();
 //                frame.style.height = "100%";
-//            });
+//              });
 //        }
 //    });
     $("#comprobar").click(function()
@@ -948,13 +833,9 @@ function  ObtenerValor(id) {
 
 }
 
-<<<<<<< HEAD
-function personales() {
-=======
 
 function personales() {
     var personalesDat;
->>>>>>> origin/master
     var paterno = ObtenerValor('#inputpaterno');
     var materno = ObtenerValor('#inputmaterno');
     var nombre = ObtenerValor('#inputnombre');
@@ -980,15 +861,11 @@ function personales() {
                 && estado !== false &&
                 capacidad !== false &&
                 sangre !== false && fecha !== false) {
-<<<<<<< HEAD
-            return  true;
-=======
             personalesDat = curp + "||" + nombre +"||" + paterno + "||" + materno + "||" + fecha+ "||" + pais + "||" + estado + "||" + municipio + "||" + ciudad
                     + "||" + sexo +"||" + edocivil + "||" + sangre + "||" + capacidad  + "||" + correo ;
                    
 
             return  personalesDat;
->>>>>>> origin/master
         }
         else {
             alert("complete sus datos personales ya que son importantes para realizar su registro");
@@ -1003,14 +880,10 @@ function personales() {
                 pais !== false &&
                 capacidad !== false &&
                 sangre !== false && fecha !== false) {
-<<<<<<< HEAD
-            return  true;
-=======
      personalesDat = curp + "||" + nombre +"||" + paterno + "||" + materno + "||" + fecha+ "||" + pais + "||" + null + "||" + null+ "||" + null
                     + "||" + sexo +"||" + edocivil + "||" + sangre + "||" + capacidad  + "||" + correo ;
 
             return  personalesDat;
->>>>>>> origin/master
         }
         else {
 
@@ -1023,23 +896,6 @@ function personales() {
 
 
 function direccion() {
-<<<<<<< HEAD
-
-    var estado = ObtenerValor('#input_estado');
-    var municipio = ObtenerValor('#dirmunicipio');
-    var numExt = ObtenerValor('#dirnumext');
-//    var numInt = ObtenerValor('#dirnumInt');
-    var dirciudad = ObtenerValor('#dirciudad');
-    var dcalle = ObtenerValor('#dircalle');
-    var dcolonia = ObtenerValor('#dircolonia');
-    var codigopostal = ObtenerValor('#cp');
-//    var celular = ObtenerValor('#numcelular');
-    var fijo = ObtenerValor('#tel2');
-    if (estado !== false && dirciudad !== false && dcalle !== false && dcolonia !== false &&
-            numExt !== false && municipio !== false && codigopostal !== false
-            && fijo !== false) {
-        return true;
-=======
     var datosDir;
     var estado = ObtenerValor('#input_estado');
     var municipio = ObtenerValor('#dirmunicipio');
@@ -1056,7 +912,6 @@ function direccion() {
             && fijo !== false && celular !== false) {
         datosDir = estado + "||" + municipio + "||" + localidad + "||" + dcolonia + "||" + dcalle + "||" + numExt + "||" + numInt + "||" + codigopostal + "||" + celular + "||" + fijo;
         return datosDir;
->>>>>>> origin/master
     } else {
         alert("Es necesario que complete su dirección");
         return false;
@@ -1065,10 +920,7 @@ function direccion() {
 
 
 function escprocedencia() {
-<<<<<<< HEAD
-=======
     var DatosEscProd;
->>>>>>> origin/master
     var estado = ObtenerValor('#inputestado');
     var municipio = ObtenerValor('#municipio');
     var tipoescuela = ObtenerValor('#combo_tipoescuela');
@@ -1080,23 +932,15 @@ function escprocedencia() {
     var mesfin = ObtenerValor('#mes_fin');
     var aniofin = ObtenerValor('#anio_fin');
     var promedio = ObtenerValor('#inputpromedio');
-<<<<<<< HEAD
-    if (tipoescuela === 'Otra') {
-=======
     if (escuela === '20') {
->>>>>>> origin/master
         if (estado !== false && municipio !== false && tipoescuela !== false &&
                 otraescuela !== false &&
                 escuela !== false
                 && clavescuela !== false && mesinicio !== false && anioinicio !== false && mesfin !== false && aniofin !== false
                 && promedio !== false) {
-<<<<<<< HEAD
-            return true;
-=======
             DatosEscProd = estado + "||" + municipio + "||" + tipoescuela + "||" + otraescuela + "||" + escuela +
                     "||" + clavescuela + "||" + mesinicio + "||" + anioinicio + "||" + mesfin + "||" + aniofin + "||" + promedio;
             return DatosEscProd;
->>>>>>> origin/master
         } else {
             alert("Complete datos de escuela de procedencia");
             return false;
@@ -1106,13 +950,9 @@ function escprocedencia() {
                 escuela !== false
                 && clavescuela !== false && mesinicio !== false && anioinicio !== false && mesfin !== false && aniofin !== false
                 && promedio !== false) {
-<<<<<<< HEAD
-            return true;
-=======
             DatosEscProd = estado + "||" + municipio + "||" + tipoescuela + "||" + null + "||" + escuela +
                     "||" + clavescuela + "||" + mesinicio + "||" + anioinicio + "||" + mesfin + "||" + aniofin + "||" + promedio;
             return DatosEscProd;
->>>>>>> origin/master
         } else {
             alert("Complete datos de escuela de procedencia");
             return false;
@@ -1122,36 +962,21 @@ function escprocedencia() {
 
 
 function carreradeseada() {
-<<<<<<< HEAD
-=======
     var DatCarrera;
->>>>>>> origin/master
     var carrera1 = ObtenerValor('#carreraopcion1');
     var carrera2 = ObtenerValor('#carreraopcion2');
     var carrera3 = ObtenerValor('#carreraopcion3');
     var curso = ObtenerValor('#propedeuticoSelect');
     if (carrera1 !== false && carrera2 !== false && carrera3 !== false && curso !== false) {
-<<<<<<< HEAD
-        return true;
-=======
 
         DatCarrera = carrera1 + "||" + carrera2 + "||" + carrera3+"||"+curso;
         return DatCarrera;
->>>>>>> origin/master
     } else {
         alert("Complete las opciones de carrera");
         return false;
     }
 }
 function nonulos() {
-<<<<<<< HEAD
-
-    if (personales() !== false && direccion() !== false
-            && escprocedencia() !== false && carreradeseada() !== false
-            ) {
-        ConfirmaDatos();
-        return true;
-=======
     var persoDatos = personales();
     var Datosdir = direccion();
     var Datosper = escprocedencia();
@@ -1163,7 +988,6 @@ function nonulos() {
         ConfirmaDatos();
         DatosFor1 = persoDatos + "||" + Datosdir + "||" + Datosper + "||" + DatosCarr;
         return DatosFor1;
->>>>>>> origin/master
     } else {
         return false;
     }
@@ -1185,10 +1009,7 @@ function checaSelect(id) {
 function evaluar() {
 
 //obtener  fecha 
-<<<<<<< HEAD
-=======
 var fechaN;
->>>>>>> origin/master
     var bandera = true;
     var anio = $("#combo_anio").val();
     var mes = $("#combo_mes").val();
@@ -1241,11 +1062,7 @@ var fechaN;
                 $('#combo_anio').css("border", "");
                 $('#combo_mes').css("border", "");
                 $('#combo_dia').css("border", "");
-<<<<<<< HEAD
-                return true;
-=======
                 return fechaN=dia+"/"+mes+"/"+anio;
->>>>>>> origin/master
             }
         }
     }
@@ -1545,13 +1362,3 @@ function closeDialog(id) {
     $('#overlay').fadeOut(1000);
     $('#popup').fadeOut(1000);
 }
-<<<<<<< HEAD
-
-function recarga() {
-//    document.getElementById('txtCaptcha').value="";
-    $('#txtCaptcha').val("");
-    
-    $('#captcha').attr('src', 'imgCaptcha.png?' + new Date().getTime());
-}
-=======
->>>>>>> origin/master

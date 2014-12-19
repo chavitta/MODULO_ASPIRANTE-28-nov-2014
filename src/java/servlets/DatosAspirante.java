@@ -5,11 +5,6 @@
  */
 package servlets;
 
-<<<<<<< HEAD
-import beans.Bdatos_aspirante;
-import java.io.IOException;
-import java.io.PrintWriter;
-=======
 import ConexionBD.Procedimientos;
 import beans.Bdatos_aspirante;
 import java.io.IOException;
@@ -21,17 +16,13 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static javax.print.attribute.Size2DSyntax.MM;
->>>>>>> origin/master
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-<<<<<<< HEAD
-=======
 import modelos.llenarBD;
->>>>>>> origin/master
 
 /**
  *
@@ -41,10 +32,7 @@ import modelos.llenarBD;
 public class DatosAspirante extends HttpServlet {
 
     Bdatos_aspirante datos = new Bdatos_aspirante();
-<<<<<<< HEAD
-=======
     llenarBD b = new llenarBD();
->>>>>>> origin/master
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -57,18 +45,6 @@ public class DatosAspirante extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-<<<<<<< HEAD
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        datos.setCurp(request.getParameter("curp"));
-        System.out.println("El  valor es:"+ datos.getCurp());
-
-        request.setAttribute("curp", datos.getCurp());
-
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/datos_aspitante.jsp");
-        rd.forward(request, response);
-
-=======
         try {
             //        try {
             response.setContentType("text/html;charset=UTF-8");
@@ -131,7 +107,6 @@ public class DatosAspirante extends HttpServlet {
         }
 
 //       
->>>>>>> origin/master
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
