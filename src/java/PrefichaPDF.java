@@ -301,15 +301,12 @@ public class PrefichaPDF extends HttpServlet {
                 preficha.add(vacio);
 
                 Paragraph informacion = new Paragraph(
-                        "                             Para completar el proceso de preinscripción:\n"
-                        + "                           - Realiza el pago para tu examen de admisión\n"
-                        + "                              Con el voucher de pago impreso realiza tu pago en cualquier sucursal BANAMEX.\n"
-                        + "                           - Acude a las instalaciones del ITToluca para el canje del recibo oficial.\n"
-                        + "                              Acude al Depto. de RECURSOS FINANCIEROS (Edif. \"A\") de lunes a viernes  de 9:00 a 18:00 hrs. y canjea el recibo bancario \n"
-                        + "                              por el recibo oficial de pago.\n"
-                        + "                           - Acude a las instalaciones del ITToluca para entregar tu documentación.\n"
-                        + "                              En el Depto. de SERVICIOS ESCOLARES (Edif. \"B4\" planta baja Ing. Logistica) de lunes a viernes  de 9:00 a 18:00 hrs. \n"
-                        + "                              Entrega tu recibo oficial y tu preficha.", FontFactory.getFont("arial", 7, Font.BOLD));
+                        "                             Para continuar con el proceso de preinscripción deberás:\n"
+                        + "                           - Realizar el pago para tu examen de admisión con la \"REFERENCIA\" que aparece\n"
+                        + "                             en este codumento en cualquier sucursal BANAMEX.\n"
+                        + "                           - Recibir la notificación en tu correo electrónico de que el pago ya fue procesado.\n"
+                        + "                           - Estar pendiente de las notificaciones que serán enviadas a tu crreo electrónico\n"
+                        + "                              Para completar tu proceso de preinscripción.\n", FontFactory.getFont("arial", 10, Font.BOLD));
                 informacion.setAlignment(Element.ALIGN_LEFT);
                 preficha.add(informacion);
 //  pie
