@@ -252,6 +252,8 @@ public class PrefichaPDF extends HttpServlet {
                 preficha.add(vacio);
 //                preficha.add(vacio);
 //                preficha.add(vacio);
+//                preficha.add(vacio);
+//                preficha.add(vacio);
                 preficha.add(vacio);
 
                 Paragraph importe = new Paragraph("IMPORTE A PAGAR: $1,500.°°", FontFactory.getFont("arial", 15, Font.BOLD));
@@ -272,12 +274,14 @@ public class PrefichaPDF extends HttpServlet {
 
                 preficha.add(vacio);
 
-                Paragraph descrConcepto = new Paragraph("DESCRIPCIÓN DEL CONCEPTO: CUOTA POR CONCEPTO DE PREINCRIPCIÓN.", FontFactory.getFont("arial", 10, Font.BOLD));
-                descrConcepto.setAlignment(Element.ALIGN_CENTER);
-                preficha.add(descrConcepto);
+//                Paragraph descrConcepto = new Paragraph("DESCRIPCIÓN DEL CONCEPTO: CUOTA POR CONCEPTO DE PREINCRIPCIÓN.", FontFactory.getFont("arial", 10, Font.BOLD));
+//                descrConcepto.setAlignment(Element.ALIGN_CENTER);
+//                preficha.add(descrConcepto);
 
                 preficha.add(vacio);
                 preficha.add(vacio);
+                preficha.add(vacio);
+//                preficha.add(vacio);
 //                preficha.add(vacio);
 //                preficha.add(vacio);
 //                preficha.add(vacio);
@@ -301,12 +305,12 @@ public class PrefichaPDF extends HttpServlet {
                 preficha.add(vacio);
 
                 Paragraph informacion = new Paragraph(
-                        "                             Para continuar con el proceso de preinscripción deberás:\n"
+                        "                        Para continuar con el proceso de preinscripción deberás:\n"
                         + "                           - Realizar el pago para tu examen de admisión con la \"REFERENCIA\" que aparece\n"
-                        + "                             en este codumento en cualquier sucursal BANAMEX.\n"
-                        + "                           - Recibir la notificación en tu correo electrónico de que el pago ya fue procesado.\n"
-                        + "                           - Estar pendiente de las notificaciones que serán enviadas a tu crreo electrónico\n"
-                        + "                              Para completar tu proceso de preinscripción.\n", FontFactory.getFont("arial", 10, Font.BOLD));
+                        + "                             en este documento en cualquier sucursal BANAMEX.\n"
+                        + "                           - Recibir la notificación en tu correo electrónico y estar al pendiente de \n"
+                        + "                             las notificaciones que serán enviadas al mismo de que el pago ya fue procesado \n"
+                        + "                             para completar tu proceso de preinscripción.\n", FontFactory.getFont("arial", 10, Font.BOLD));
                 informacion.setAlignment(Element.ALIGN_LEFT);
                 preficha.add(informacion);
 //  pie

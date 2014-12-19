@@ -18,35 +18,35 @@ import javax.servlet.http.HttpServletResponse;
 
 public class SendMail extends HttpServlet {
 
-    public static void main(String[] args) {
-        String from = "aspirantes@ittoluca.edu.mx"; //quien envia
-        String pass = "11280672";           //contraseña de la cuenta
-        String[] to = {
-            "11280392@ittoluca.edu.mx",
-            "chava_dalu5@hotmail.com"
-        }; //a quien va..
-        String subject = "Probando la aplicación con los acentos";  //asunto
-        String body = "Prueba desde aplicación java.\nPrueba desde aplicación java."; //cuerpo del mensaje
-        body = body + "\nrevisando los acentos ´ por que no quieren enviarse correctamente. prueba número no se cuál";
-        body = body + "\nhola!";
-        body = body + "\nhola!";
-        body = body + "\nhola!";
-        body = body + "\nhola!";
-        body = body + "\nhola!";
-        body = body + "\nhola!";
-        body = body + "\nhola!";
-        body = body + "\nhola!";
-        body = body + "\nhola!";
-        body = body + "\nhola!";
-        body = body + "\nhola!";
-        body = body + "\nhola!";
-        body = body + "\nhola!";
-        body = body + "\nhola!";
-
-        System.out.println(body);
-
-        sendFromMail(from, pass, to, subject, body);
-    }
+//    public static void main(String[] args) {
+//        String from = "aspirantes@ittoluca.edu.mx"; //quien envia
+//        String pass = "11280672";           //contraseña de la cuenta
+//        String[] to = {
+//            "11280392@ittoluca.edu.mx",
+//            "chava_dalu5@hotmail.com"
+//        }; //a quien va..
+//        String subject = "Probando la aplicación con los acentos";  //asunto
+//        String body = "Prueba desde aplicación java.\nPrueba desde aplicación java."; //cuerpo del mensaje
+//        body = body + "\nrevisando los acentos ´ por que no quieren enviarse correctamente. prueba número no se cuál";
+//        body = body + "\nhola!";
+//        body = body + "\nhola!";
+//        body = body + "\nhola!";
+//        body = body + "\nhola!";
+//        body = body + "\nhola!";
+//        body = body + "\nhola!";
+//        body = body + "\nhola!";
+//        body = body + "\nhola!";
+//        body = body + "\nhola!";
+//        body = body + "\nhola!";
+//        body = body + "\nhola!";
+//        body = body + "\nhola!";
+//        body = body + "\nhola!";
+//        body = body + "\nhola!";
+//
+//        System.out.println(body);
+//
+//        sendFromMail(from, pass, to, subject, body);
+//    }
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
