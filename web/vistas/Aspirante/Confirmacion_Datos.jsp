@@ -3,6 +3,11 @@
     Created on : 9/07/2014, 11:30:23 AM
     Author     : ElyyzZ BaRruEtA
 --%>
+<<<<<<< HEAD
+=======
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+>>>>>>> origin/master
 <head>
    
 </head>
@@ -29,7 +34,11 @@
                         </p></fieldset>
                 </section>
                 <br>
+<<<<<<< HEAD
 
+=======
+                
+>>>>>>> origin/master
                 <a href="#InicioPag"> <input type="button" value="Confirmar" id="confirmar" name="confirmar"   style="cursor: pointer"></a>
                 <input  type="button" value="Cancelar" id="cancelar" name="cancelar" style="cursor: pointer" >
             </div>       

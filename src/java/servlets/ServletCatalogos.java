@@ -86,11 +86,19 @@ public class ServletCatalogos extends HttpServlet {
         Procedimientos p = new Procedimientos();
 //        Conexion c=new  Conexion(usuario, pass);
         try {
+<<<<<<< HEAD
             pais = p.getCatalogos(usuario, pass, 1, 0);
             pais = catalogo.AgregaS(pais);
             estado = p.getCatalogos(usuario, pass, 2, 0);
             estado = catalogo.AgregaS(estado);
             Escuela = p.getCatalogos(usuario, pass, 8, 0);
+=======
+            pais = p.getCatalogos(1, 0);
+            pais = catalogo.AgregaS(pais);
+            estado = p.getCatalogos(2, 0);
+            estado = catalogo.AgregaS(estado);
+            Escuela = p.getCatalogos(8, 0);
+>>>>>>> origin/master
             Escuela = catalogo.AgregaS(Escuela);
 //            c.getConnection().close();
         } catch (SQLException ex) {

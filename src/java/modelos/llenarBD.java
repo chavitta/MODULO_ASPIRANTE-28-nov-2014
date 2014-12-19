@@ -8,6 +8,10 @@ package modelos;
 import beans.BaseDatos;
 import java.util.ArrayList;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.StringTokenizer;
+>>>>>>> origin/master
 
 /**
  *
@@ -197,8 +201,13 @@ public class llenarBD {
         lista.add(b);
         return lista;
     }
+<<<<<<< HEAD
     
       public List<BaseDatos> llenaCasaEs() {
+=======
+
+    public List<BaseDatos> llenaCasaEs() {
+>>>>>>> origin/master
         List<BaseDatos> lista = new ArrayList<>();
         BaseDatos b;
         b = new BaseDatos();
@@ -223,8 +232,13 @@ public class llenarBD {
         lista.add(b);
         return lista;
     }
+<<<<<<< HEAD
       
       public List<BaseDatos> llenaZonaProcedencia() {
+=======
+
+    public List<BaseDatos> llenaZonaProcedencia() {
+>>>>>>> origin/master
         List<BaseDatos> lista = new ArrayList<>();
         BaseDatos b;
         b = new BaseDatos();
@@ -249,7 +263,12 @@ public class llenarBD {
         lista.add(b);
         return lista;
     }
+<<<<<<< HEAD
         public List<BaseDatos> llenaViveCon() {
+=======
+
+    public List<BaseDatos> llenaViveCon() {
+>>>>>>> origin/master
         List<BaseDatos> lista = new ArrayList<>();
         BaseDatos b;
         b = new BaseDatos();
@@ -274,4 +293,21 @@ public class llenarBD {
         lista.add(b);
         return lista;
     }
+<<<<<<< HEAD
+=======
+
+    public ArrayList <String> Formatea(String dats) {
+
+     ArrayList <String> Datos = new  ArrayList<>();
+       int i=0;
+        StringTokenizer cad = new StringTokenizer(dats, "||", false);
+        while (cad.hasMoreTokens()) {
+            String h;
+            System.out.println(h=cad.nextToken());
+            Datos.add(h);          
+        }        
+           return Datos;
+    }
+
+>>>>>>> origin/master
 }

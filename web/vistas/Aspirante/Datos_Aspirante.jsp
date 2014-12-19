@@ -92,9 +92,15 @@
                             <section id="personales_izquierdo">
                                 <fieldset id="labels_personales">
                                     <p><label id="etiqueta_curp_izq" class="labels" >CURP:</label>
+<<<<<<< HEAD
                                         <input type="text" id="inputcurp" name="curp" class="tamano_cajas_texto" maxlength="18" onkeyup="this.value = this.value.toUpperCase()"
                                                required>  
                                         <label id="etiqueta_apaterno_izq" class="labels" >Apellido Paterno:</label>
+=======
+                                        <input type="text" id="inputcurp" name="curp" class="tamano_cajas_texto"  maxlength="18" onkeyup="this.value = this.value.toUpperCase()"
+                                               required>  
+                                        <label id="etiqueta_apaterno_izq" class="labels">Apellido Paterno:</label>
+>>>>>>> origin/master
                                         <input type="text" id="inputpaterno" name="Apaterno" value="${paterno}" class="tamano_cajas_texto" maxlength="30" >
                                         <label id="etiqueta_fecha_izq" class="labels" name="Amaterno"> Fecha de Nacimiento:</label>
 
@@ -187,7 +193,11 @@
                                 <fieldset id="personales_derecho">
                                     <br>                      
                                     <p><label name="etiqueta_nombre">Nombre(s):</label>
+<<<<<<< HEAD
                                         <input id="inputnombre" value="${nombre}" type="text" required class="tamano_caja_nombre" maxlength="30">
+=======
+                                        <input id="inputnombre" value="${name}" type="text" required class="tamano_caja_nombre" maxlength="30">
+>>>>>>> origin/master
                                         <br><br><br><br><br>
                                         <label id="sangre_aviso">Tu tipo de sangre es de vital importancia en caso de accidentes</label></p>                       
                                 </fieldset>
@@ -281,7 +291,18 @@
                                         <option value="Privada">Privada</option>
                                         <option value="Otra">Otra</option>                                      
                                     </select>
+<<<<<<< HEAD
                                     <div  id="opcion_otraescuela_aparece" style="display: none"> 
+=======
+                                  
+                                    <label name="etiqueta_escuela" class="labels">Escuela:</label>
+                                    <select  name="input_escuela"  id="escuelaprocedencia" class="Selects">
+                                        <c:forEach items="${Escuela}" var="Escuela">                                     
+                                            <option value="${Escuela.getClave()}"><c:out value="${Escuela.getNombre()}"/></option>                                                                           
+                                        </c:forEach>
+                                    </select>
+                                      <div  id="opcion_otraescuela_aparece" style="display: none"> 
+>>>>>>> origin/master
                                         <label name="otra_escuela" class="labels">Especifique que Tipo:</label>
                                         <select id="otraescuela" name="input_otraescuela" class="Selects" ><!-- -->
                                             <option value="0">--Seleccione--</option>
@@ -289,12 +310,15 @@
                                             <option value="Ac">Acuerdo 286</option>
                                         </select>
                                     </div>
+<<<<<<< HEAD
                                     <label name="etiqueta_escuela" class="labels">Escuela:</label>
                                     <select  name="input_escuela"  id="escuelaprocedencia" class="Selects">
                                         <c:forEach items="${Escuela}" var="Escuela">                                     
                                             <option value="${Escuela.getClave()}"><c:out value="${Escuela.getNombre()}"/></option>                                                                           
                                         </c:forEach>
                                     </select>
+=======
+>>>>>>> origin/master
                                 </fieldset>                
                             </section>
                             <section id="centro_escuela">                    
@@ -400,8 +424,13 @@
                                     <p><label name="cursopropedeutico" id="cursopropedeutico_label" class="labels_carrera">Tomaste Curso <br> Propedeutico en  la Institucion:</label>
                                         <select name="curso_sino" id="propedeuticoSelect" id="curso_sino"  >
                                             <option value="--">--</option>
+<<<<<<< HEAD
                                             <option value="si">Si</option>
                                             <option value="no">No</option>
+=======
+                                            <option value="Y">Si</option>
+                                            <option value="N">No</option>
+>>>>>>> origin/master
                                         </select></p>
                                 </fieldset>
                             </section>               

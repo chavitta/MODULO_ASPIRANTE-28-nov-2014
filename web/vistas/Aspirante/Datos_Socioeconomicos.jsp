@@ -206,6 +206,10 @@
                 </section>             
             </div>           
         </div>      
+<<<<<<< HEAD
+=======
+        <label id="ObjetoPersonales" value="${DatosAsp}" style="display: none">${DatosAsp}</label>
+>>>>>>> origin/master
         <div id="continuarsocioeconomicos">
             <fieldset id="botones_continuar">
                 <a href="/MODULO_ASPIRANTE/Datos_Aspirante.jsp"><input type="button" id="regresar_socioeconomicos" title="CONTINUAR" value="Regresar"  ></a>
