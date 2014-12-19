@@ -25,18 +25,24 @@
         <servlet-class>servlets.CargaEstado</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>CaptchaSer</servlet-name>
         <servlet-class>servlets.CaptchaSer</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ValidaCap</servlet-name>
         <servlet-class>servlets.ValidaCap</servlet-class>
+=======
+        <servlet-name>RecibeDatosPersonales</servlet-name>
+        <servlet-class>servlets.RecibeDatosPersonales</servlet-class>
+>>>>>>> origin/master
     </servlet>
     <servlet-mapping>
         <servlet-name>ServletActualizarListas</servlet-name>
         <url-pattern>/ServletActualizarListas</url-pattern>
     </servlet-mapping>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>CaptchaServlet</servlet-name>
         <servlet-class>CaptchaServlet</servlet-class>
     </servlet>
@@ -53,6 +59,8 @@
         <url-pattern>/Valida</url-pattern>
     </servlet-mapping>-->
     <servlet>
+=======
+>>>>>>> origin/master
         <description>This is the description of my J2EE component</description>
         <display-name>This is the display name of my J2EE component</display-name>
         <servlet-name>SendMail</servlet-name>
@@ -101,12 +109,17 @@
         <url-pattern>/CargaEstado</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>CaptchaSer</servlet-name>
         <url-pattern>/imgCaptcha.png</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ValidaCap</servlet-name>
         <url-pattern>/ValidaCap</url-pattern>
+=======
+        <servlet-name>RecibeDatosPersonales</servlet-name>
+        <url-pattern>/RecibeDatosPersonales</url-pattern>
+>>>>>>> origin/master
     </servlet-mapping>
     <session-config>
         <session-timeout>
