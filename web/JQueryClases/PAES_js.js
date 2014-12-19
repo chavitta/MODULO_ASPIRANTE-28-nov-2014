@@ -95,7 +95,7 @@ $(document).ready(function() {
     $('#formulario_inicio').submit(function(event) {
         var captcha = document.getElementById("txtCaptcha").value;
 
-        alert("El captcha es " + captcha);
+//        alert("El captcha es " + captcha);
         $.ajax({
             type: "POST",
             async: false,

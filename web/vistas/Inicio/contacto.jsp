@@ -105,6 +105,9 @@
                             <textarea name="txtDescripcion" id="txtDescripcion" style="overflow:auto; resize:none" rows="10" cols="30" placeholder="Inserte aquí el cuerpo de su mensaje."></textarea>
                         </div>
                     </div>
+                    <div class="img_correo_pop">
+                        <img src="Imagenes/ico_correo.gif" alt="ico_Correo" width="110" height="110">
+                    </div>
                     <div id="imgCaptchaDiv" class="control-group">
                         <img id="captcha" class="captcha" src="imgCaptcha.png" width="175" height="60" alt="Imagen CAPTCHA" title="Imagen CAPTCHA" />
                         <br>

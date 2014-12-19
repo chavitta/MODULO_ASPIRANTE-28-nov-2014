@@ -99,6 +99,7 @@ public class PrefichaPDF extends HttpServlet {
                 Paragraph vacio = new Paragraph("  ", FontFactory.getFont("arial", 10, Font.BOLD));
                 vacio.setAlignment(Element.ALIGN_CENTER);
                 preficha.add(vacio);
+                preficha.add(vacio);
 //                preficha.add(vacio);
 //cuerpo
 //cuerpo
@@ -118,22 +119,25 @@ public class PrefichaPDF extends HttpServlet {
                 preficha.add(fotografia);
 
                 PdfContentByte rectangulo_general = writer.getDirectContentUnder();
-                rectangulo_general.rectangle(50, 28, 500, 740);
-//                rectangulo_general.re
+                rectangulo_general.rectangle(50, 28, 500, 730);
                 rectangulo_general.fill();
-                drawRectangleSC(rectangulo_general, 50, 28, 500, 740);
+                drawRectangleSC(rectangulo_general, 50, 28, 500, 730);
 
                 PdfContentByte rectangulo_periodo = writer.getDirectContentUnder();
-                rectangulo_periodo.rectangle(125, 740, 350, 20);
+                rectangulo_periodo.rectangle(125, 725, 350, 20);
                 rectangulo_periodo.fill();
-                drawRectangle(rectangulo_periodo, 125, 740, 350, 20);
+                drawRectangleSC(rectangulo_periodo, 125, 725, 350, 20);
 
 //                Image imagen = Image.getInstance(“hash_avatar.png”)
                 
                 
-//                Image img = Image.getInstance("C:\\Users\\Chavitta\\Documents\\GitHub\\MODULO_ASPIRANTE 28 nov 2014\\src\\java\\itt_logo.jpg");
-//                img.setAbsolutePosition(150f,650f);
-//                preficha.add(img);
+                Image Logo_itt = Image.getInstance("C:\\Users\\Chavitta\\Documents\\GitHub\\MODULO_ASPIRANTE 28 nov 2014\\src\\java\\itt_logo_opt.jpg");
+                Logo_itt.setAbsolutePosition(140f,640f);
+                preficha.add(Logo_itt);
+                
+                Image Logo_banco = Image.getInstance("C:\\Users\\Chavitta\\Documents\\GitHub\\MODULO_ASPIRANTE 28 nov 2014\\src\\java\\bnmx_color_opt.jpg");
+                Logo_banco.setAbsolutePosition(380f,340f);
+                preficha.add(Logo_banco);
                 
                 
 //                Image img = Image.getInstance("itt_logo.jpg");
@@ -145,17 +149,17 @@ public class PrefichaPDF extends HttpServlet {
 //                document.add(imagen);
                 
                 PdfContentByte espacio_imagen = writer.getDirectContentUnder();
-                espacio_imagen.rectangle(255, 650, 85, 80);
+                espacio_imagen.rectangle(255, 635, 85, 80);
                 espacio_imagen.fill();
-                drawRectangleSC(espacio_imagen, 255, 650, 85, 80);
+                drawRectangleSC(espacio_imagen, 255, 635, 85, 80);
 
 //                preficha.add(vacio);
                 preficha.add(vacio);
 
                 PdfContentByte fechaimpr = writer.getDirectContentUnder();
-                fechaimpr.rectangle(416, 650, 100, 35);
+                fechaimpr.rectangle(416, 635, 100, 35);
                 fechaimpr.fill();
-                drawRectangle(fechaimpr, 416, 650, 100, 35);
+                drawRectangleSC(fechaimpr, 416, 635, 100, 35);
 //            drawRectangle(fechaimpr, 85, 530, 430, 25);
 
                 Paragraph fechapdf = new Paragraph("\tFecha de impresión                ", FontFactory.getFont("arial", 10, com.itextpdf.text.Font.BOLD));
@@ -176,15 +180,15 @@ public class PrefichaPDF extends HttpServlet {
 //                preficha.add(vacio);
 
                 PdfContentByte rectangulo_preficha_no = writer.getDirectContentUnder();
-                rectangulo_preficha_no.rectangle(85, 605, 430, 25);
+                rectangulo_preficha_no.rectangle(85, 590, 430, 25);
                 rectangulo_preficha_no.fill();
-                drawRectangle(rectangulo_preficha_no, 85, 605, 430, 25);
+                drawRectangleSC(rectangulo_preficha_no, 85, 590, 430, 25);
 
                 PdfContentByte rectangulo_datos = writer.getDirectContentUnder();
-                rectangulo_datos.rectangle(85, 515, 430, 80);
+                rectangulo_datos.rectangle(85, 500, 430, 80);
 //                rectangulo_datos.rec
                 rectangulo_datos.fill();
-                drawRectangleSC(rectangulo_datos, 85, 515, 430, 80);
+                drawRectangleSC(rectangulo_datos, 85, 500, 430, 80);
 
 //////////////////////////////
                 Paragraph nombre = new Paragraph("                                                                              Nombre:   " + nombrebd,
@@ -228,23 +232,23 @@ public class PrefichaPDF extends HttpServlet {
                 preficha.add(formatoBanamex);
                 
                 PdfContentByte rectanguloDepositoB = writer.getDirectContentUnder();
-                rectanguloDepositoB.rectangle(85, 485, 430, 20);
+                rectanguloDepositoB.rectangle(85, 470, 430, 20);
                 rectanguloDepositoB.fill();
-                drawRectangle(rectanguloDepositoB, 85, 485, 430, 20);
+                drawRectangle(rectanguloDepositoB, 85, 470, 430, 20);
                 
                 
                 PdfContentByte rectanguloPago = writer.getDirectContentUnder();
-                rectanguloPago.rectangle(85, 295, 430, 190);
+                rectanguloPago.rectangle(85, 280, 430, 190);
                 rectanguloPago.fill();
-                drawRectangleSC(rectanguloPago, 85, 295, 430, 190);
+                drawRectangleSC(rectanguloPago, 85, 280, 430, 190);
                 
                 preficha.add(vacio);
                 
                 PdfContentByte rectanguloConcepto = writer.getDirectContentUnder();
-                rectanguloConcepto.rectangle(180, 440, 240, 35);
+                rectanguloConcepto.rectangle(180, 425, 240, 35);
 //                rectangulo_datos.rec
                 rectanguloConcepto.fill();
-                drawRectangleSC(rectanguloConcepto, 180, 440, 240, 35);
+                drawRectangleSC(rectanguloConcepto, 180, 425, 240, 35);
                 
                 Paragraph formatoConceptoPre = new Paragraph("CONCEPTO: PREINSCRIPCIONES", FontFactory.getFont("arial", 10, Font.BOLD));
                 formatoConceptoPre.setAlignment(Element.ALIGN_CENTER);
@@ -293,14 +297,14 @@ public class PrefichaPDF extends HttpServlet {
                 preficha.add(atencion);
 
                 PdfContentByte rectangulo_atencion = writer.getDirectContentUnder();
-                rectangulo_atencion.rectangle(245, 214, 100, 25);
+                rectangulo_atencion.rectangle(245, 199, 100, 25);
                 rectangulo_atencion.fill();
-                drawRectangle(rectangulo_atencion, 245, 214, 100, 25);
+                drawRectangle(rectangulo_atencion, 245, 199, 100, 25);
 
                 PdfContentByte rectangulo_info = writer.getDirectContentUnder();
-                rectangulo_info.rectangle(85, 80, 430, 100);
+                rectangulo_info.rectangle(85, 65, 430, 100);
                 rectangulo_info.fill();
-                drawRectangle(rectangulo_info, 85, 80, 430, 120);
+                drawRectangle(rectangulo_info, 85, 65, 430, 120);
 
                 preficha.add(vacio);
                 preficha.add(vacio);
@@ -346,13 +350,26 @@ public class PrefichaPDF extends HttpServlet {
         content.saveState();
         PdfGState state = new PdfGState();
         content.setGState(state);
-        content.setRGBColorFill(213, 213, 213);
+        content.setRGBColorFill(232, 232, 232);
+        content.setColorStroke(BaseColor.CYAN);
 //        content.setr
         content.setLineWidth((float) .5);
         content.rectangle(x, y, width, height);
         content.fillStroke();
         content.restoreState();
     }
+//    public static void drawRectangleWhite(PdfContentByte content, float x, float y, float width, float height) {
+//        content.saveState();
+//        PdfGState state = new PdfGState();
+//        content.setGState(state);
+//        content.setRGBColorFill(255, 255, 2);
+//        content.setColorStroke(BaseColor.CYAN);
+////        content.setr
+//        content.setLineWidth((float) .5);
+//        content.rectangle(x, y, width, height);
+//        content.fillStroke();
+//        content.restoreState();
+//    }
 
     public static void drawRectangleSC(PdfContentByte content, float x, float y, float width, float height) {
         content.saveState();
@@ -360,7 +377,7 @@ public class PrefichaPDF extends HttpServlet {
 //        state.setFillOpacity(0.6f);
         content.setGState(state);
         content.setRGBColorFill(0xFF, 0xFF, 0xFA);
-        content.setColorStroke(BaseColor.BLUE);
+        content.setColorStroke(BaseColor.CYAN);
         content.setLineWidth((float) .5);
         content.rectangle(x, y, width, height);
         content.fillStroke();
@@ -372,6 +389,7 @@ public class PrefichaPDF extends HttpServlet {
         PdfGState state = new PdfGState();
         content.setGState(state);
         content.setRGBColorFill(0, 230, 255);
+        content.setColorStroke(BaseColor.CYAN);
         content.setLineWidth((float) .5);
         content.rectangle(x, y, width, height);
         content.fillStroke();
